@@ -22,7 +22,7 @@ serve(async (req) => {
     const { data, error } = await supabaseClient
       .from('site_config')
       .select('config_value')
-      .eq('config_key', 'MAPBOX_ACCESS_TOKEN')
+      .eq('config_key', 'mapbox_token')
       .single()
 
     if (error) {
