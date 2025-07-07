@@ -1,0 +1,5 @@
+
+project_id = "uvqyhftgqonejozdefaa"
+
+[functions.voice-assistant]
+verify_jwt = false
