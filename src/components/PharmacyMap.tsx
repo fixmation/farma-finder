@@ -63,7 +63,7 @@ const PharmacyMap = ({ searchQuery }: PharmacyMapProps) => {
         .from('site_config')
         .select('config_value')
         .eq('config_key', 'mapbox_token')
-        .single();
+        .maybeSingle();
 
       if (error) {
         console.error('Error fetching Mapbox token:', error);
