@@ -56,7 +56,7 @@ const LocationSearch: React.FC<LocationSearchProps> = ({
           .from('site_config')
           .select('config_value')
           .eq('config_key', 'mapbox_token')
-          .single();
+          .maybeSingle();
 
         if (!error && data?.config_value) {
           setMapboxToken(data.config_value);
