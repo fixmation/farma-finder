@@ -125,10 +125,9 @@ const PharmacyMap = ({ searchQuery }: PharmacyMapProps) => {
           latitude,
           longitude,
           verified_at,
-          operating_hours,
-          profiles!user_id(status)
+          operating_hours
         `)
-        .eq('profiles.status', 'verified');
+        .not('verified_at', 'is', null);
 
       if (error) throw error;
 
