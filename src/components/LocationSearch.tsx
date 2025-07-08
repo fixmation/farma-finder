@@ -4,6 +4,7 @@ import { Search, MapPin, Loader2 } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { toast } from 'sonner';
+import { supabase } from '@/integrations/supabase/client';
 
 interface LocationSuggestion {
   id: string;
@@ -48,7 +49,25 @@ const LocationSearch: React.FC<LocationSearchProps> = ({
 
   const checkMapboxToken = async () => {
     try {
-      const response = await fetch('/api/config/mapbox-token');
+      // Try to get Mapbox token from Supabase site_config
+      // Note: This may fail due to RLS policy issues
+      try {
+        const { data, error } = await supabase
+          .from('site_config')
+          .select('config_value')
+          .eq('config_key', 'mapbox_token')
+          .single();
+
+        if (!error && data?.config_value) {
+          setMapboxToken(data.config_value);
+          return;
+        }
+      } catch (supabaseError) {
+        console.error('Supabase config fetch failed:', supabaseError);
+      }
+
+      // Fallback to edge function
+      const response = await fetch(`${import.meta.env.VITE_SUPABASE_URL}/functions/v1/config-mapbox-token`);
       if (response.ok) {
         const data = await response.json();
         setMapboxToken(data.token || '');
