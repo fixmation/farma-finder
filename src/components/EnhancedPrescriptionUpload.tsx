@@ -39,10 +39,9 @@ export const EnhancedPrescriptionUpload: React.FC = () => {
           id,
           business_name,
           address,
-          contact_phone,
-          profiles!user_id(status)
+          contact_phone
         `)
-        .eq('profiles.status', 'verified');
+        .not('verified_at', 'is', null);
 
       if (error) throw error;
       setPharmacies(data || []);

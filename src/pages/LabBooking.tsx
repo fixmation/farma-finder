@@ -51,10 +51,9 @@ const LabBooking: React.FC = () => {
           services_offered,
           home_visit_available,
           home_visit_charges,
-          operating_hours,
-          profiles!inner(status)
+          operating_hours
         `)
-        .eq('profiles.status', 'verified')
+        .not('verified_at', 'is', null)
         .eq('home_visit_available', true);
 
       if (error) throw error;
