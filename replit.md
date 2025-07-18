@@ -115,3 +115,15 @@ Preferred communication style: Simple, everyday language.
 - **Image Optimization**: Supabase storage with CDN delivery
 
 The application is designed for scalability with a clear separation of concerns, comprehensive error handling, and mobile-first responsive design to serve Sri Lanka's diverse healthcare ecosystem.
+
+## Recent Changes
+
+### January 18, 2025
+- ✅ **Migration Completed**: Successfully migrated from Supabase to Neon PostgreSQL
+- ✅ **Syntax Fixes**: Resolved critical syntax errors in Index.tsx and LabBooking.tsx files
+- ✅ **API Integration**: Created missing queryClient.ts file for proper API request handling
+- ✅ **UI Enhancement**: Applied white/#7aebcf gradient theme throughout the application
+- ✅ **Feature Updates**: Enhanced Sri Lankan medicine database with dropdown search functionality
+- ✅ **Laboratory Services**: Added Laboratory Home Visits pricing cards (LKR 2,500-7,500)
+- ✅ **Voice Assistant**: Improved Voice Assistant with comprehensive medical responses
+- ✅ **Database Integration**: All components now use server-side API calls instead of direct Supabase client calls
