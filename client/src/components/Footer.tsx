@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { MapPin, Heart, Shield, Settings } from 'lucide-react';
@@ -29,16 +28,16 @@ const Footer: React.FC = () => {
           <div className="space-y-4">
             <h4 className="font-semibold text-lg">Quick Links</h4>
             <div className="space-y-2">
-              <Link to="/" className="block text-white/80 hover:text-white transition-colors text-sm">
+              <Link to="/pharmacies" className="block text-white/80 hover:text-white transition-colors text-sm">
                 Find Pharmacies
               </Link>
-              <Link to="/" className="block text-white/80 hover:text-white transition-colors text-sm">
+              <Link to="/prescription-scanner" className="block text-white/80 hover:text-white transition-colors text-sm">
                 Prescription Scanner
               </Link>
-              <Link to="/" className="block text-white/80 hover:text-white transition-colors text-sm">
+              <Link to="/voice-assistant" className="block text-white/80 hover:text-white transition-colors text-sm">
                 Voice Assistant
               </Link>
-              <Link to="/" className="block text-white/80 hover:text-white transition-colors text-sm">
+              <Link to="/drug-information" className="block text-white/80 hover:text-white transition-colors text-sm">
                 Drug Information
               </Link>
               <Link to="/how-to-use" className="block text-white/80 hover:text-white transition-colors text-sm">
@@ -98,7 +97,7 @@ const Footer: React.FC = () => {
               Built with ❤️ for the people of Sri Lanka
             </div>
           </div>
-          
+
           {/* Innovation and Hosting Information */}
           <div className="flex flex-col sm:flex-row justify-between items-center gap-4 mt-4">
             <span className="text-white/60 flex items-left gap-1" style={{ fontSize: '0.7rem' }}>

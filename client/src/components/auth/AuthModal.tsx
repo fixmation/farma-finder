@@ -214,7 +214,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
                   required
                 />
               </div>
-              <Button type="submit" className="w-full" disabled={loading}>
+              <Button type="submit" className="w-full bg-blue-500 hover:bg-blue-600 text-white" disabled={loading}>
                 {loading ? 'Signing In...' : 'Sign In'}
               </Button>
             </form>
@@ -348,7 +348,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
                       required
                     />
                   </div>
-                  
+
                   <div className="space-y-2">
                     <Label htmlFor="addressLine1">First Line of Address</Label>
                     <Input
@@ -418,7 +418,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
                 </Label>
               </div>
 
-              <Button type="submit" className="w-full" disabled={loading || !pdpaConsent}>
+              <Button type="submit" className="w-full bg-green-500 hover:bg-green-600 text-white" disabled={loading || !pdpaConsent}>
                 {loading ? 'Creating Account...' : 'Create Account'}
               </Button>
             </form>
