@@ -42,14 +42,20 @@ const LabBooking: React.FC = () => {
     queryFn: () => fetch('/api/laboratories')
       .then(res => res.json())
       .then(labs => {
-        // Calculate distance from customerLocation to each lab
         return labs.map(lab => ({
           ...lab,
-          distance: calculateDistance(customerLocation, lab.location) // make sure each lab has location data
-        }))
-        .sort((a, b) => a.distance - b.distance); // Sort by distance
+          distance: calculateDistance(customerLocation, lab.location)
+        })).sort((a, b) => a.distance - b.distance);
       })
   });
+
+  useEffect(() => {
+    fetch('/api/locations')
+      .then(res => res.json())
+      .then(data => {
+        // Implement logic if data contains provinces and districts mapping
+      });
+  }, []);
 
   // Function to calculate distance between two coordinates
   function calculateDistance({ lat: lat1, lng: lng1 }, { lat: lat2, lng: lng2 }) {
