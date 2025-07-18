@@ -1,5 +1,4 @@
-
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -19,7 +18,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
   const { signUp, signIn } = useAuth();
   const [loading, setLoading] = useState(false);
   const [pdpaConsent, setPdpaConsent] = useState(false);
-  
+
   // Sign In Form
   const [signInData, setSignInData] = useState({
     email: '',
@@ -38,8 +37,85 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
     // Pharmacy/Laboratory specific fields
     businessName: '',
     registrationNumber: '',
-    address: ''
+    addressLine1: '',
+    city: '',
+    district: '',
+    province: ''
   });
+
+  const [districts, setDistricts] = useState([
+    { id: 1, name: 'Colombo' },
+    { id: 2, name: 'Gampaha' },
+    { id: 3, name: 'Kalutara' },
+    { id: 4, name: 'Kandy' },
+    { id: 5, name: 'Matale' },
+    { id: 6, name: 'Nuwara Eliya' },
+    { id: 7, name: 'Galle' },
+    { id: 8, name: 'Matara' },
+    { id: 9, name: 'Hambantota' },
+    { id: 10, name: 'Jaffna' },
+    { id: 11, name: 'Kilinochchi' },
+    { id: 12, name: 'Mannar' },
+    { id: 13, name: 'Vavuniya' },
+    { id: 14, name: 'Mullaitivu' },
+    { id: 15, name: 'Batticaloa' },
+    { id: 16, name: 'Ampara' },
+    { id: 17, name: 'Trincomalee' },
+    { id: 18, name: 'Kurunegala' },
+    { id: 19, name: 'Puttalam' },
+    { id: 20, name: 'Anuradhapura' },
+    { id: 21, name: 'Polonnaruwa' },
+    { id: 22, name: 'Badulla' },
+    { id: 23, name: 'Monaragala' },
+    { id: 24, name: 'Ratnapura' },
+    { id: 25, name: 'Kegalle' }
+  ]); // Mock data
+
+  const handleDistrictChange = (districtName: string) => {
+    setSignUpData({ ...signUpData, district: districtName, province: getProvinceByDistrict(districtName) });
+  };
+
+  const getProvinceByDistrict = (district: string) => {
+    // Mock function - replace with actual data fetching logic
+    switch (district) {
+      case 'Colombo':
+      case 'Gampaha':
+      case 'Kalutara':
+        return 'Western Province';
+      case 'Kandy':
+      case 'Matale':
+      case 'Nuwara Eliya':
+        return 'Central Province';
+      case 'Galle':
+      case 'Matara':
+      case 'Hambantota':
+        return 'Southern Province';
+      case 'Jaffna':
+      case 'Kilinochchi':
+      case 'Mannar':
+      case 'Vavuniya':
+      case 'Mullaitivu':
+        return 'Northern Province';
+      case 'Batticaloa':
+      case 'Ampara':
+      case 'Trincomalee':
+        return 'Eastern Province';
+      case 'Kurunegala':
+      case 'Puttalam':
+        return 'North Western Province';
+      case 'Anuradhapura':
+      case 'Polonnaruwa':
+        return 'North Central Province';
+      case 'Badulla':
+      case 'Monaragala':
+        return 'Uva Province';
+      case 'Ratnapura':
+      case 'Kegalle':
+        return 'Sabaragamuwa Province';
+      default:
+        return '';
+    }
+  };
 
   const handleSignIn = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -56,7 +132,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
 
   const handleSignUp = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!pdpaConsent) {
       alert('Please accept the PDPA consent to continue.');
       return;
@@ -78,7 +154,10 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
         ...((signUpData.role === 'pharmacy' || signUpData.role === 'laboratory') && {
           business_name: signUpData.businessName,
           registration_number: signUpData.registrationNumber,
-          address: signUpData.address
+          address_line1: signUpData.addressLine1,
+          city: signUpData.city,
+          district: signUpData.district,
+          province: signUpData.province
         })
       };
 
@@ -269,14 +348,49 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
                       required
                     />
                   </div>
+                  
                   <div className="space-y-2">
-                    <Label htmlFor="address">Address</Label>
+                    <Label htmlFor="addressLine1">First Line of Address</Label>
                     <Input
-                      id="address"
-                      placeholder="e.g., No. 123, Main Street, Colombo 07"
-                      value={signUpData.address}
-                      onChange={(e) => setSignUpData({ ...signUpData, address: e.target.value })}
+                      id="addressLine1"
+                      placeholder="e.g., No. 123, Main Street"
+                      value={signUpData.addressLine1}
+                      onChange={(e) => setSignUpData({ ...signUpData, addressLine1: e.target.value })}
                       required
+                    />
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="city">Town/City</Label>
+                    <Input
+                      id="city"
+                      placeholder="e.g., Colombo 07"
+                      value={signUpData.city}
+                      onChange={(e) => setSignUpData({ ...signUpData, city: e.target.value })}
+                      required
+                    />
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="district">District</Label>
+                    <Select value={signUpData.district} onValueChange={(value) => handleDistrictChange(value)}>
+                      <SelectTrigger>
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {districts.map((district) => (
+                          <SelectItem key={district.id} value={district.name}>{district.name}</SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="province">Province</Label>
+                    <Input
+                      id="province"
+                      value={signUpData.province}
+                      readOnly
                     />
                   </div>
                   <p className="text-sm text-blue-700">
