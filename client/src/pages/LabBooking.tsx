@@ -35,10 +35,45 @@ const LabBooking: React.FC = () => {
 
   const queryClient = useQueryClient();
 
+  const customerLocation = { lat: 6.9271, lng: 79.8612 }; // Example: Colombo coordinates
+
   const { data: laboratories = [], isLoading } = useQuery({
     queryKey: ['/api/laboratories'],
-    queryFn: () => fetch('/api/laboratories').then(res => res.json())
+    queryFn: () => fetch('/api/laboratories')
+      .then(res => res.json())
+      .then(labs => {
+        // Calculate distance from customerLocation to each lab
+        return labs.map(lab => ({
+          ...lab,
+          distance: calculateDistance(customerLocation, lab.location) // make sure each lab has location data
+        }))
+        .sort((a, b) => a.distance - b.distance); // Sort by distance
+      })
   });
+
+  // Function to calculate distance between two coordinates
+  function calculateDistance({ lat: lat1, lng: lng1 }, { lat: lat2, lng: lng2 }) {
+    const toRad = (value) => value * Math.PI / 180;
+    const R = 6371; // Radius of the earth in km
+    const dLat = toRad(lat2 - lat1);
+    const dLng = toRad(lng2 - lng1);
+    const a =
+      Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+      Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) *
+      Math.sin(dLng / 2) * Math.sin(dLng / 2);
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    return R * c; // Distance in km
+  }
+
+  // Fetch districts and provinces
+  useEffect(() => {
+    fetch('/api/locations')
+      .then(res => res.json())
+      .then(data => {
+        // Assume data contains provinces and districts mapping
+        // Update state or whatever handle logic you need here
+      });
+  }, []);
 
   const bookingMutation = useMutation({
     mutationFn: (bookingData: any) => apiRequest('/api/bookings', {
