@@ -73,11 +73,11 @@ const Index = () => {
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center shadow-blue-sm">
+              <div className="w-10 h-10 medical-gradient rounded-xl flex items-center justify-center shadow-blue-sm">
                 <MapPin className="h-6 w-6 text-white" />
               </div>
               <div className="hidden sm:block">
-                <h1 className="text-2xl font-bold text-blue-600">
+                <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-green-600 bg-clip-text text-transparent">
                   FarmaFinder
                 </h1>
                 <p className="text-sm text-slate-600">AI-Enhanced Health Companion</p>
@@ -88,7 +88,7 @@ const Index = () => {
                 </h1>
               </div>
             </div>
-
+            
             <div className="flex items-center space-x-2 md:space-x-4">
               {/* Desktop Location Search */}
               <div className="hidden md:block max-w-xs md:max-w-md">
@@ -179,7 +179,7 @@ const Index = () => {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mb-8 md:mb-12">
             <Card className="bg-white/90 backdrop-blur-sm border border-gray-200 hover:scale-105 transition-all duration-300 animate-scale-in shadow-lg">
               <CardHeader className="text-center p-4 md:p-6">
-                <div className="w-12 h-12 md:w-16 md:h-16 bg-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-2 md:mb-4 shadow-blue-sm">
+                <div className="w-12 h-12 md:w-16 md:h-16 medical-gradient rounded-2xl flex items-center justify-center mx-auto mb-2 md:mb-4 shadow-blue-sm">
                   <MapPin className="h-6 w-6 md:h-8 md:w-8 text-white" />
                 </div>
                 <CardTitle className="text-slate-800 text-sm md:text-base">Find Pharmacies</CardTitle>
@@ -191,7 +191,7 @@ const Index = () => {
 
             <Card className="bg-white/90 backdrop-blur-sm border border-gray-200 hover:scale-105 transition-all duration-300 animate-scale-in shadow-lg" style={{ animationDelay: '0.1s' }}>
               <CardHeader className="text-center p-4 md:p-6">
-                <div className="w-12 h-12 md:w-16 md:h-16 bg-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-2 md:mb-4 shadow-blue-sm">
+                <div className="w-12 h-12 md:w-16 md:h-16 bg-gradient-to-br from-medical-teal to-medical-green rounded-2xl flex items-center justify-center mx-auto mb-2 md:mb-4 shadow-blue-sm">
                   <Camera className="h-6 w-6 md:h-8 md:w-8 text-white" />
                 </div>
                 <CardTitle className="text-slate-800 text-sm md:text-base">Smart Scan</CardTitle>
