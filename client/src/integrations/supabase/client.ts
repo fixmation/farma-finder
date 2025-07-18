@@ -1,17 +1,37 @@
-// Deprecated: Supabase client has been migrated to use server-side PostgreSQL
-// Use the new API client from '@/lib/api' instead
+// Compatibility layer for Supabase migration
+// This file provides mock implementations to maintain compatibility during migration
 
-import { createClient } from '@supabase/supabase-js';
-import type { Database } from './types';
-
-const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL || "https://uvqyhftgqonejozdefaa.supabase.co";
-const SUPABASE_PUBLISHABLE_KEY = import.meta.env.VITE_SUPABASE_ANON_KEY || "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InV2cXloZnRncW9uZWpvemRlZmFhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTE2NDE5ODMsImV4cCI6MjA2NzIxNzk4M30.jVXBI8e65fz-7qwCs5nOxzqg_lfSznUkilvtA5i0i0w";
-
-// Legacy compatibility - keeping for auth features that still need Supabase
-export const supabase = createClient<Database>(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY, {
+export const supabase = {
   auth: {
-    storage: localStorage,
-    persistSession: true,
-    autoRefreshToken: true,
+    getSession: () => Promise.resolve({ data: { session: null } }),
+    onAuthStateChange: () => ({ data: { subscription: { unsubscribe: () => {} } } }),
+    signUp: () => Promise.resolve({ data: null, error: null }),
+    signInWithPassword: () => Promise.resolve({ data: null, error: null }),
+    signOut: () => Promise.resolve({ error: null })
+  },
+  from: () => ({
+    select: () => ({
+      eq: () => ({
+        single: () => Promise.resolve({ data: null, error: null })
+      }),
+      order: () => Promise.resolve({ data: [], error: null })
+    }),
+    insert: () => ({
+      select: () => Promise.resolve({ data: [], error: null })
+    }),
+    update: () => ({
+      eq: () => ({
+        select: () => Promise.resolve({ data: null, error: null })
+      })
+    }),
+    delete: () => ({
+      eq: () => Promise.resolve({ data: null, error: null })
+    })
+  }),
+  storage: {
+    from: () => ({
+      upload: () => Promise.resolve({ data: null, error: null }),
+      getPublicUrl: () => ({ data: { publicUrl: '' } })
+    })
   }
-});
+};
