@@ -128,7 +128,7 @@ export const EnhancedPrescriptionUpload: React.FC = () => {
             Enhanced Prescription Upload
           </CardTitle>
           <CardDescription>
-            Upload your prescription to a verified pharmacy with smart commission tracking
+            Upload your prescription to a verified pharmacy for AI analysis and medicine orders
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-6">
