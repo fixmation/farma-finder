@@ -280,6 +280,17 @@ const Index = () => {
                   </div>
                 </div>
               </div>
+              <div className="text-center mt-4">
+                <p className="text-sm text-gray-600">
+                  The Package prices given above are only an estimation and guidance, prices may vary with different laboratories.
+                </p>
+              </div>
+              <Button
+                onClick={() => navigate('/lab-booking')}
+                className="w-full medical-gradient text-white mt-6"
+              >
+                Book Home Visit
+              </Button>
             </CardContent>
           </Card>
 
