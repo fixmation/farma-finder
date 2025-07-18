@@ -11,11 +11,11 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default: "bg-blue-500 text-white",
-        destructive: "bg-red-500 text-white",
-        outline: "border border-blue-500 text-blue-500",
-        secondary: "bg-green-500 text-white",
-        ghost: "text-blue-500",
-        link: "text-blue-500 underline-offset-4 underline",
+        destructive: "bg-red-600 text-white",
+        outline: "bg-transparent border border-blue-500 text-blue-500",
+        secondary: "bg-green-600 text-white",
+        ghost: "bg-transparent text-blue-500",
+        link: "bg-transparent text-blue-500 underline-offset-4 underline",
       },
       size: {
         default: "h-10 px-4 py-2",
