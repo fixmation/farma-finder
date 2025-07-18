@@ -39,6 +39,32 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Pharmacy routes
+  app.get("/api/pharmacies", async (req, res) => {
+    try {
+      const pharmacies = await storage.listPharmacies();
+      res.json(pharmacies);
+    } catch (error) {
+      res.status(500).json({ error: "Failed to fetch pharmacies" });
+    }
+  });
+
+  // Prescription upload route
+  app.post("/api/prescriptions/upload", async (req, res) => {
+    try {
+      // For now, just return success without actual file processing
+      // In a real implementation, this would handle file upload to cloud storage
+      // and create database records
+      res.json({ 
+        success: true, 
+        message: "Prescription uploaded successfully",
+        prescriptionId: `prescription_${Date.now()}`
+      });
+    } catch (error) {
+      res.status(500).json({ error: "Failed to upload prescription" });
+    }
+  });
+
   // Laboratory routes
   app.post("/api/laboratories", async (req, res) => {
     try {

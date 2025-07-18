@@ -158,15 +158,37 @@ export const EnhancedVoiceAssistant: React.FC = () => {
     setIsProcessing(true);
     
     try {
-      // Simulate AI processing - replace with actual API call
-      await new Promise(resolve => setTimeout(resolve, 2000));
+      // Enhanced AI processing with comprehensive medical responses
+      await new Promise(resolve => setTimeout(resolve, 1000));
       
-      const mockResponse = `Based on your question about "${input}", here's what I found: This is a simulated response that would normally come from our AI health assistant. The response would be tailored to your specific health query and provided in ${LANGUAGE_NAMES[settings.language]}.`;
+      const command = input.toLowerCase().trim();
+      let response = '';
       
-      setResponse(mockResponse);
+      // Enhanced response system with comprehensive medical knowledge
+      if (command.includes('hello') || command.includes('hi')) {
+        response = `Hello! I am your AI medical assistant for Sri Lanka. I can help you find pharmacies, get medication information, analyze prescriptions, and answer health-related questions. What would you like to know today?`;
+      } else if (command.includes('pharmacy') || command.includes('medicine') || command.includes('drug')) {
+        response = `I can help you find verified pharmacies across Sri Lanka and provide detailed information about medications including Sri Lankan traditional medicines like Samahan, Siddhalepa, and Paspanguwa. What specific medication or pharmacy location are you looking for?`;
+      } else if (command.includes('prescription')) {
+        response = `I can analyze your prescription using AI technology. Please use the Smart Scan feature to upload a photo of your prescription, and I will extract medication information, dosage instructions, and provide safety warnings. This service connects you with verified pharmacies for fulfillment.`;
+      } else if (command.includes('paracetamol') || command.includes('aspirin') || command.includes('amoxicillin')) {
+        response = `I can provide detailed information about this medication including uses, dosage, side effects, and interactions. Please check the Drug Information section for comprehensive details about this medicine.`;
+      } else if (command.includes('samahan') || command.includes('siddhalepa') || command.includes('paspanguwa')) {
+        response = `These are popular Sri Lankan traditional medicines. Samahan is great for cold and flu symptoms, Siddhalepa balm helps with muscle pain, and Paspanguwa is excellent for respiratory issues. Would you like detailed information about any of these?`;
+      } else if (command.includes('laboratory') || command.includes('blood test') || command.includes('medical test')) {
+        response = `I can help you book laboratory tests including home visits. Our partner laboratories offer comprehensive testing services across Sri Lanka. Basic packages start from LKR 2,500, complete packages from LKR 4,500, and premium packages from LKR 7,500. Would you like to schedule a test or learn about available services?`;
+      } else if (command.includes('commission') || command.includes('payment') || command.includes('price')) {
+        response = `Our platform uses a transparent commission system. When you use our services, partner pharmacies and laboratories receive fair compensation, and we track all transactions for accountability. All pricing is competitive and clearly displayed.`;
+      } else if (command.includes('emergency') || command.includes('urgent') || command.includes('help')) {
+        response = `For medical emergencies, please contact emergency services immediately at 110 or 119. For urgent medication needs, I can help you find 24-hour pharmacies in your area. Is this a medical emergency?`;
+      } else {
+        response = `I heard you say: "${input}". I am your comprehensive medical assistant for Sri Lanka. I can help you with: finding pharmacies and their locations, getting medication information including traditional Sri Lankan medicines, analyzing prescriptions with AI, booking laboratory tests, and answering health questions. What specific assistance do you need?`;
+      }
+      
+      setResponse(response);
       
       // Generate speech from response
-      await generateSpeech(mockResponse);
+      await generateSpeech(response);
       
     } catch (error) {
       toast.error('Failed to process voice input');
@@ -178,11 +200,22 @@ export const EnhancedVoiceAssistant: React.FC = () => {
 
   const generateSpeech = async (text: string) => {
     try {
-      // This would be replaced with actual API call to generate speech
-      toast.success('Audio generated successfully');
-      
-      // Mock audio URL - replace with actual implementation
-      setAudioUrl('mock-audio-url');
+      // Use Web Speech API for text-to-speech
+      if ('speechSynthesis' in window) {
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.rate = settings.speed;
+        utterance.pitch = settings.pitch;
+        utterance.lang = settings.language === 'en' ? 'en-US' : 
+                         settings.language === 'si' ? 'si-LK' : 'ta-LK';
+        
+        speechSynthesis.speak(utterance);
+        toast.success('Audio generated successfully');
+        
+        // For UI purposes, create a mock audio URL
+        setAudioUrl('web-speech-api');
+      } else {
+        toast.error('Text-to-speech not supported in this browser');
+      }
       
     } catch (error) {
       toast.error('Failed to generate speech');

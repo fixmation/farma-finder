@@ -4,7 +4,8 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Search, AlertTriangle, Info, Clock, Shield } from 'lucide-react';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Search, AlertTriangle, Info, Clock, Shield, ChevronDown } from 'lucide-react';
 import { toast } from 'sonner';
 
 interface DrugInformationProps {
@@ -29,8 +30,8 @@ const DrugInformation: React.FC<DrugInformationProps> = ({ selectedDrug }) => {
   const [drugInfo, setDrugInfo] = useState<DrugInfo | null>(null);
   const [isLoading, setIsLoading] = useState(false);
 
-  // Mock drug database
-  const mockDrugDatabase: Record<string, DrugInfo> = {
+  // Sri Lankan medicine database
+  const sriLankanMedicineDatabase: Record<string, DrugInfo> = {
     paracetamol: {
       name: 'Paracetamol',
       genericName: 'Acetaminophen',
@@ -66,6 +67,54 @@ const DrugInformation: React.FC<DrugInformationProps> = ({ selectedDrug }) => {
       warnings: ['Complete full course', 'Allergic reactions possible', 'May reduce contraceptive effectiveness'],
       interactions: ['Oral contraceptives', 'Methotrexate', 'Allopurinol'],
       storage: 'Store at room temperature, liquid form in refrigerator'
+    },
+    'siddhalepa balm': {
+      name: 'Siddhalepa Balm',
+      genericName: 'Ayurvedic Herbal Balm',
+      category: 'Topical Analgesic',
+      description: 'Traditional Sri Lankan herbal balm used for external pain relief, made with natural ingredients.',
+      uses: ['Muscle pain', 'Joint pain', 'Headaches', 'Sprains', 'Arthritis pain'],
+      dosage: 'Apply thin layer to affected area 2-3 times daily',
+      sideEffects: ['Skin irritation (rare)', 'Allergic reactions in sensitive individuals'],
+      warnings: ['For external use only', 'Avoid contact with eyes', 'Discontinue if irritation occurs'],
+      interactions: ['No known drug interactions'],
+      storage: 'Store in cool, dry place'
+    },
+    'link natural': {
+      name: 'Link Natural',
+      genericName: 'Herbal Supplement',
+      category: 'Ayurvedic Medicine',
+      description: 'Sri Lankan herbal supplement for general wellness and immune support.',
+      uses: ['Immune support', 'General wellness', 'Energy boost', 'Stress relief'],
+      dosage: '1-2 capsules twice daily with meals',
+      sideEffects: ['Mild stomach upset (rare)', 'Allergic reactions in sensitive individuals'],
+      warnings: ['Consult physician if pregnant or breastfeeding', 'Keep out of reach of children'],
+      interactions: ['May interact with blood thinners'],
+      storage: 'Store in cool, dry place away from direct sunlight'
+    },
+    'samahan': {
+      name: 'Samahan',
+      genericName: 'Herbal Drink Mix',
+      category: 'Ayurvedic Medicine',
+      description: 'Traditional Sri Lankan herbal drink mix for cold, flu, and general wellness.',
+      uses: ['Cold symptoms', 'Flu symptoms', 'Cough', 'Sore throat', 'Immune support'],
+      dosage: '1 packet dissolved in hot water, 2-3 times daily',
+      sideEffects: ['Generally well tolerated', 'May cause mild stomach upset'],
+      warnings: ['Consult physician if symptoms persist', 'Not recommended for children under 2'],
+      interactions: ['No known drug interactions'],
+      storage: 'Store in cool, dry place'
+    },
+    'paspanguwa': {
+      name: 'Paspanguwa',
+      genericName: 'Herbal Decoction',
+      category: 'Ayurvedic Medicine',
+      description: 'Traditional Sri Lankan herbal decoction for respiratory ailments and fever.',
+      uses: ['Cough', 'Cold', 'Fever', 'Respiratory congestion', 'Sore throat'],
+      dosage: 'Boil ingredients and drink as tea 2-3 times daily',
+      sideEffects: ['Generally safe', 'May cause mild nausea in sensitive individuals'],
+      warnings: ['Use fresh ingredients', 'Consult physician for persistent symptoms'],
+      interactions: ['No known drug interactions'],
+      storage: 'Store dried herbs in airtight containers'
     }
   };
 
@@ -91,14 +140,14 @@ const DrugInformation: React.FC<DrugInformationProps> = ({ selectedDrug }) => {
       // Simulate API delay
       await new Promise(resolve => setTimeout(resolve, 1000));
 
-      // Search in mock database
-      const foundDrug = mockDrugDatabase[searchQuery];
+      // Search in Sri Lankan medicine database
+      const foundDrug = sriLankanMedicineDatabase[searchQuery];
       
       if (foundDrug) {
         setDrugInfo(foundDrug);
         toast.success(`Information found for ${foundDrug.name}`);
       } else {
-        toast.error(`No information found for "${searchQuery}". Try searching for: paracetamol, aspirin, or amoxicillin`);
+        toast.error(`No information found for "${searchQuery}". Try searching for: paracetamol, samahan, or siddhalepa balm`);
       }
     } catch (error) {
       toast.error('Failed to search drug information');
@@ -129,10 +178,26 @@ const DrugInformation: React.FC<DrugInformationProps> = ({ selectedDrug }) => {
       <Card className="glass-card">
         <CardContent className="pt-6">
           <div className="flex flex-col sm:flex-row gap-3">
+            <div className="flex-1">
+              <Select onValueChange={(value) => setSearchTerm(value)}>
+                <SelectTrigger className="w-full">
+                  <SelectValue placeholder="Select a Sri Lankan medicine" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="paracetamol">Paracetamol</SelectItem>
+                  <SelectItem value="aspirin">Aspirin</SelectItem>
+                  <SelectItem value="amoxicillin">Amoxicillin</SelectItem>
+                  <SelectItem value="siddhalepa balm">Siddhalepa Balm</SelectItem>
+                  <SelectItem value="link natural">Link Natural</SelectItem>
+                  <SelectItem value="samahan">Samahan</SelectItem>
+                  <SelectItem value="paspanguwa">Paspanguwa</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
             <div className="relative flex-1">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
               <Input
-                placeholder="Enter drug name (e.g., paracetamol, aspirin, amoxicillin)"
+                placeholder="Or type medicine name manually"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 onKeyPress={handleKeyPress}

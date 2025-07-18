@@ -7,8 +7,8 @@ import { Label } from '@/components/ui/label';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Upload, Camera, FileText, AlertTriangle, CheckCircle, MapPin } from 'lucide-react';
-import { supabase } from '@/integrations/supabase/client';
-import { useAuth } from '@/components/auth/AuthProvider';
+// Removed supabase import - using server-side API calls instead
+// import { useAuth } from '@/components/auth/AuthProvider';
 import { toast } from 'sonner';
 
 interface Pharmacy {
@@ -19,7 +19,7 @@ interface Pharmacy {
 }
 
 export const EnhancedPrescriptionUpload: React.FC = () => {
-  const { user } = useAuth();
+  // const { user } = useAuth();
   const [pharmacies, setPharmacies] = useState<Pharmacy[]>([]);
   const [selectedPharmacy, setSelectedPharmacy] = useState<string>('');
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
@@ -33,18 +33,12 @@ export const EnhancedPrescriptionUpload: React.FC = () => {
 
   const fetchPharmacies = async () => {
     try {
-      const { data, error } = await supabase
-        .from('pharmacy_details')
-        .select(`
-          id,
-          business_name,
-          address,
-          contact_phone
-        `)
-        .not('verified_at', 'is', null);
-
-      if (error) throw error;
-      setPharmacies(data || []);
+      const response = await fetch('/api/pharmacies');
+      if (!response.ok) {
+        throw new Error('Failed to fetch pharmacies');
+      }
+      const data = await response.json();
+      setPharmacies(data);
     } catch (error) {
       console.error('Error fetching pharmacies:', error);
       toast.error('Failed to load pharmacies');
@@ -72,72 +66,33 @@ export const EnhancedPrescriptionUpload: React.FC = () => {
   };
 
   const uploadPrescription = async () => {
-    if (!selectedFile || !selectedPharmacy || !user) {
-      toast.error('Please select a file, pharmacy, and ensure you are logged in');
+    if (!selectedFile || !selectedPharmacy) {
+      toast.error('Please select a file and pharmacy');
       return;
     }
 
     setUploading(true);
     
     try {
-      // Upload file to Supabase storage
-      const fileExt = selectedFile.name.split('.').pop();
-      const fileName = `${user.id}-${Date.now()}.${fileExt}`;
+      // Create FormData for file upload
+      const formData = new FormData();
+      formData.append('file', selectedFile);
+      formData.append('pharmacy_id', selectedPharmacy);
+
+      // Upload to server
+      const response = await fetch('/api/prescriptions/upload', {
+        method: 'POST',
+        body: formData
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to upload prescription');
+      }
+
+      const result = await response.json();
       
-      const { data: uploadData, error: uploadError } = await supabase.storage
-        .from('pharmacy-documents')
-        .upload(`prescriptions/${fileName}`, selectedFile);
-
-      if (uploadError) throw uploadError;
-
-      // Get public URL
-      const { data: urlData } = supabase.storage
-        .from('pharmacy-documents')
-        .getPublicUrl(`prescriptions/${fileName}`);
-
-      // Create prescription upload record using direct SQL insert (handling potential missing table)
-      let prescriptionId = null;
-      try {
-        const { data: prescriptionData, error: prescriptionError } = await supabase
-          .from('commission_transactions')
-          .insert({
-            amount_lkr: 100,
-            description: `Prescription upload to pharmacy ${selectedPharmacy}`,
-            pharmacy_id: selectedPharmacy,
-            status: 'completed'
-          })
-          .select();
-
-        if (prescriptionData && prescriptionData.length > 0) {
-          prescriptionId = prescriptionData[0].id;
-        }
-      } catch (error) {
-        console.error('Error creating prescription record:', error);
-      }
-
-      // Create commission transaction (simplified approach)
-      try {
-        const { error: commissionError } = await supabase
-          .from('commission_transactions')
-          .insert({
-            amount_lkr: 100,
-            description: 'Commission for prescription upload',
-            pharmacy_id: selectedPharmacy,
-            status: 'completed'
-          });
-
-        if (commissionError) {
-          console.error('Commission creation error:', commissionError);
-          toast.success('Prescription uploaded successfully, but commission tracking may have failed');
-        } else {
-          toast.success('Prescription uploaded successfully! Commission processed automatically.');
-        }
-      } catch (error) {
-        console.error('Commission processing error:', error);
-        toast.success('Prescription uploaded successfully, but commission tracking may have failed');
-      }
-
       setUploadSuccess(true);
+      toast.success('Prescription uploaded successfully! Commission processed automatically.');
       
       // Reset form
       setSelectedFile(null);

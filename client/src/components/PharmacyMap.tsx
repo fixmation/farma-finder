@@ -4,7 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { MapPin, Clock, Phone, Star } from "lucide-react";
-import { supabase } from '@/integrations/supabase/client';
+// Removed supabase import - using server-side API calls instead
 import mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 
@@ -59,19 +59,12 @@ const PharmacyMap = ({ searchQuery }: PharmacyMapProps) => {
 
   const fetchMapboxToken = async () => {
     try {
-      const { data, error } = await supabase
-        .from('site_config')
-        .select('config_value')
-        .eq('config_key', 'mapbox_token')
-        .maybeSingle();
-
-      if (error) {
-        console.error('Error fetching Mapbox token:', error);
-        return;
-      }
-
-      if (data?.config_value) {
-        setMapboxToken(data.config_value);
+      // Use environment variable for Mapbox token
+      const token = import.meta.env.VITE_MAPBOX_TOKEN;
+      if (token) {
+        setMapboxToken(token);
+      } else {
+        console.error('VITE_MAPBOX_TOKEN environment variable not set');
       }
     } catch (error) {
       console.error('Error fetching Mapbox token:', error);
@@ -115,23 +108,14 @@ const PharmacyMap = ({ searchQuery }: PharmacyMapProps) => {
 
   const fetchRegisteredPharmacies = async () => {
     try {
-      const { data, error } = await supabase
-        .from('pharmacy_details')
-        .select(`
-          id,
-          business_name,
-          address,
-          contact_phone,
-          latitude,
-          longitude,
-          verified_at,
-          operating_hours
-        `)
-        .not('verified_at', 'is', null);
-
-      if (error) throw error;
-
-      const mappedPharmacies = data?.map(pharmacy => ({
+      const response = await fetch('/api/pharmacies');
+      if (!response.ok) {
+        throw new Error('Failed to fetch pharmacies');
+      }
+      
+      const data = await response.json();
+      
+      const mappedPharmacies = data.map((pharmacy: any) => ({
         id: pharmacy.id,
         business_name: pharmacy.business_name,
         address: pharmacy.address,
@@ -142,7 +126,7 @@ const PharmacyMap = ({ searchQuery }: PharmacyMapProps) => {
         operating_hours: pharmacy.operating_hours,
         distance: '0.5 km', // Calculate actual distance based on user location
         rating: 4.5 // TODO: Calculate from reviews
-      })) || [];
+      }));
 
       setPharmacies(mappedPharmacies);
       setFilteredPharmacies(mappedPharmacies);

@@ -77,13 +77,13 @@ const Index = () => {
                 <MapPin className="h-6 w-6 text-white" />
               </div>
               <div className="hidden sm:block">
-                <h1 className="text-2xl font-bold text-slate-800">
+                <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-green-600 bg-clip-text text-transparent">
                   FarmaFinder
                 </h1>
                 <p className="text-sm text-slate-600">AI-Enhanced Health Companion</p>
               </div>
               <div className="sm:hidden">
-                <h1 className="text-lg font-bold text-slate-800">
+                <h1 className="text-lg font-bold bg-gradient-to-r from-blue-600 to-green-600 bg-clip-text text-transparent">
                   FarmaFinder
                 </h1>
               </div>
@@ -167,7 +167,7 @@ const Index = () => {
         <div className="animate-fade-in">
           {/* Hero Section */}
           <div className="text-center mb-8 md:mb-12">
-            <h2 className="text-3xl md:text-4xl lg:text-6xl font-bold mb-4 md:mb-6 text-slate-800">
+            <h2 className="text-3xl md:text-4xl lg:text-6xl font-bold mb-4 md:mb-6 bg-gradient-to-r from-blue-600 to-green-600 bg-clip-text text-transparent">
               AI-Powered Healthcare
             </h2>
             <p className="text-lg md:text-xl text-slate-700 max-w-2xl mx-auto leading-relaxed px-4">
@@ -177,7 +177,7 @@ const Index = () => {
 
           {/* Enhanced Feature Cards */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mb-8 md:mb-12">
-            <Card className="glass-card hover:scale-105 transition-all duration-300 animate-scale-in shadow-blue-md">
+            <Card className="bg-white/90 backdrop-blur-sm border border-gray-200 hover:scale-105 transition-all duration-300 animate-scale-in shadow-lg">
               <CardHeader className="text-center p-4 md:p-6">
                 <div className="w-12 h-12 md:w-16 md:h-16 medical-gradient rounded-2xl flex items-center justify-center mx-auto mb-2 md:mb-4 shadow-blue-sm">
                   <MapPin className="h-6 w-6 md:h-8 md:w-8 text-white" />
@@ -189,7 +189,7 @@ const Index = () => {
               </CardHeader>
             </Card>
 
-            <Card className="glass-card hover:scale-105 transition-all duration-300 animate-scale-in shadow-blue-md" style={{ animationDelay: '0.1s' }}>
+            <Card className="bg-white/90 backdrop-blur-sm border border-gray-200 hover:scale-105 transition-all duration-300 animate-scale-in shadow-lg" style={{ animationDelay: '0.1s' }}>
               <CardHeader className="text-center p-4 md:p-6">
                 <div className="w-12 h-12 md:w-16 md:h-16 bg-gradient-to-br from-medical-teal to-medical-green rounded-2xl flex items-center justify-center mx-auto mb-2 md:mb-4 shadow-blue-sm">
                   <Camera className="h-6 w-6 md:h-8 md:w-8 text-white" />
@@ -201,7 +201,7 @@ const Index = () => {
               </CardHeader>
             </Card>
 
-            <Card className="glass-card hover:scale-105 transition-all duration-300 animate-scale-in shadow-blue-md" style={{ animationDelay: '0.2s' }}>
+            <Card className="bg-white/90 backdrop-blur-sm border border-gray-200 hover:scale-105 transition-all duration-300 animate-scale-in shadow-lg" style={{ animationDelay: '0.2s' }}>
               <CardHeader className="text-center p-4 md:p-6">
                 <div className="w-12 h-12 md:w-16 md:h-16 bg-gradient-to-br from-medical-green to-medical-blue rounded-2xl flex items-center justify-center mx-auto mb-2 md:mb-4 shadow-blue-sm">
                   <Mic className="h-6 w-6 md:h-8 md:w-8 text-white" />
@@ -213,7 +213,7 @@ const Index = () => {
               </CardHeader>
             </Card>
 
-            <Card className="glass-card hover:scale-105 transition-all duration-300 animate-scale-in shadow-blue-md" style={{ animationDelay: '0.3s' }}>
+            <Card className="bg-white/90 backdrop-blur-sm border border-gray-200 hover:scale-105 transition-all duration-300 animate-scale-in shadow-lg" style={{ animationDelay: '0.3s' }}>
               <CardHeader className="text-center p-4 md:p-6">
                 <div className="w-12 h-12 md:w-16 md:h-16 bg-gradient-to-br from-purple-500 to-medical-blue rounded-2xl flex items-center justify-center mx-auto mb-2 md:mb-4 shadow-blue-sm">
                   <FileText className="h-6 w-6 md:h-8 md:w-8 text-white" />
@@ -238,29 +238,74 @@ const Index = () => {
             </div>
           )}
 
+          {/* Laboratory Home Visits Pricing */}
+          <Card className="bg-white/90 backdrop-blur-sm border border-gray-200 shadow-lg mb-8">
+            <CardHeader className="text-center">
+              <CardTitle className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-green-600 bg-clip-text text-transparent">
+                Laboratory Home Visits
+              </CardTitle>
+              <CardDescription className="text-gray-600">
+                Professional medical testing at your convenience
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="grid md:grid-cols-3 gap-6">
+                <div className="text-center p-4 border border-gray-200 rounded-lg">
+                  <div className="text-3xl font-bold text-blue-600 mb-2">LKR 2,500</div>
+                  <div className="text-sm text-gray-600 mb-3">Basic Package</div>
+                  <div className="text-xs text-gray-500 space-y-1">
+                    <p>• Blood glucose test</p>
+                    <p>• Blood pressure check</p>
+                    <p>• Basic health assessment</p>
+                  </div>
+                </div>
+                <div className="text-center p-4 border-2 border-blue-600 rounded-lg bg-blue-50">
+                  <div className="text-3xl font-bold text-blue-600 mb-2">LKR 4,500</div>
+                  <div className="text-sm text-gray-600 mb-3">Complete Package</div>
+                  <div className="text-xs text-gray-500 space-y-1">
+                    <p>• Full blood count</p>
+                    <p>• Liver function tests</p>
+                    <p>• Kidney function tests</p>
+                    <p>• Lipid profile</p>
+                  </div>
+                </div>
+                <div className="text-center p-4 border border-gray-200 rounded-lg">
+                  <div className="text-3xl font-bold text-green-600 mb-2">LKR 7,500</div>
+                  <div className="text-sm text-gray-600 mb-3">Premium Package</div>
+                  <div className="text-xs text-gray-500 space-y-1">
+                    <p>• Complete blood analysis</p>
+                    <p>• Cardiac markers</p>
+                    <p>• Diabetes screening</p>
+                    <p>• Thyroid function</p>
+                  </div>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
           {/* Main Interface */}
-          <Card className="glass-card shadow-blue-lg">
+          <Card className="bg-white/90 backdrop-blur-sm border border-gray-200 shadow-lg">
             <CardContent className="p-0">
               <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
                 <div className="p-4 md:p-6 pb-0">
-                  <TabsList className="hidden md:grid w-full grid-cols-5 bg-white/50 shadow-blue-sm">
-                    <TabsTrigger value="map" className="data-[state=active]:bg-medical-blue data-[state=active]:text-white">
+                  <TabsList className="hidden md:grid w-full grid-cols-5 bg-white border border-gray-200 shadow-sm">
+                    <TabsTrigger value="map" className="data-[state=active]:bg-blue-600 data-[state=active]:text-white hover:bg-blue-50">
                       <MapPin className="h-4 w-4 mr-2" />
                       Map
                     </TabsTrigger>
-                    <TabsTrigger value="upload" className="data-[state=active]:bg-medical-teal data-[state=active]:text-white">
+                    <TabsTrigger value="upload" className="data-[state=active]:bg-green-600 data-[state=active]:text-white hover:bg-green-50">
                       <Camera className="h-4 w-4 mr-2" />
                       Smart Scan
                     </TabsTrigger>
-                    <TabsTrigger value="voice" className="data-[state=active]:bg-medical-green data-[state=active]:text-white">
+                    <TabsTrigger value="voice" className="data-[state=active]:bg-red-600 data-[state=active]:text-white hover:bg-red-50">
                       <Mic className="h-4 w-4 mr-2" />
                       Voice AI
                     </TabsTrigger>
-                    <TabsTrigger value="chat" className="data-[state=active]:bg-blue-600 data-[state=active]:text-white">
+                    <TabsTrigger value="chat" className="data-[state=active]:bg-purple-600 data-[state=active]:text-white hover:bg-purple-50">
                       <MessageCircle className="h-4 w-4 mr-2" />
                       Chat
                     </TabsTrigger>
-                    <TabsTrigger value="drugs" className="data-[state=active]:bg-purple-600 data-[state=active]:text-white">
+                    <TabsTrigger value="drugs" className="data-[state=active]:bg-orange-600 data-[state=active]:text-white hover:bg-orange-50">
                       <Upload className="h-4 w-4 mr-2" />
                       Drug Info
                     </TabsTrigger>
