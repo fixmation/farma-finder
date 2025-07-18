@@ -67,7 +67,7 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-medical-slate via-medical-mint to-white pb-16 md:pb-0">
+    <div className="min-h-screen bg-gradient-to-br from-slate-100 via-emerald-50 to-white pb-16 md:pb-0">
       {/* Header */}
       <header className="bg-white/80 backdrop-blur-md border-b border-white/20 sticky top-0 z-40 shadow-blue-md">
         <div className="container mx-auto px-4 py-4">
@@ -123,7 +123,7 @@ const Index = () => {
                     variant="ghost"
                     size="sm"
                     onClick={handleSignOut}
-                    className="flex items-center gap-1 text-sm"
+                    className="flex items-center gap-1 text-sm text-red-600 hover:text-red-700 hover:bg-red-50"
                   >
                     <LogOut className="h-4 w-4" />
                     <span className="hidden sm:inline">Sign Out</span>
@@ -132,7 +132,11 @@ const Index = () => {
               ) : (
                 <div className="flex items-center gap-2">
                   <div className="relative">
-                    <Button onClick={() => setShowAuthModal(true)} size="sm" className="text-sm shadow-blue-sm">
+                    <Button 
+                      onClick={() => setShowAuthModal(true)} 
+                      size="sm" 
+                      className="text-sm shadow-blue-sm bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white"
+                    >
                       <span className="hidden sm:inline">Sign In / Sign Up</span>
                       <span className="sm:hidden">Sign In</span>
                     </Button>
@@ -146,7 +150,7 @@ const Index = () => {
                     variant="outline"
                     size="sm"
                     onClick={() => navigate('/how-to-use')}
-                    className="flex items-center gap-1 text-sm shadow-blue-sm"
+                    className="flex items-center gap-1 text-sm shadow-blue-sm border-green-200 hover:bg-green-50"
                   >
                     <HelpCircle className="h-4 w-4" />
                     <span className="hidden sm:inline">How To Use</span>
