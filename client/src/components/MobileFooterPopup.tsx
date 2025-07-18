@@ -53,7 +53,7 @@ const MobileFooterPopup = () => {
         <DialogTrigger asChild>
           <Button
             size="sm"
-            className="rounded-full shadow-lg bg-medical-blue hover:bg-medical-blue/90 w-12 h-12 p-0"
+            className="rounded-full shadow-lg bg-slate-700 hover:bg-slate-800 text-white w-12 h-12 p-0"
           >
             <Info className="h-5 w-5" />
           </Button>
@@ -75,7 +75,7 @@ const MobileFooterPopup = () => {
           <div className="space-y-4 max-h-80 overflow-y-auto">
             {footerSections.map((section, sectionIndex) => (
               <div key={sectionIndex} className="space-y-2">
-                <div className="flex items-center gap-2 text-sm font-medium text-medical-blue">
+                <div className="flex items-center gap-2 text-sm font-medium text-slate-700">
                   <section.icon className="h-4 w-4" />
                   {section.title}
                 </div>
@@ -85,7 +85,7 @@ const MobileFooterPopup = () => {
                     <button
                       key={itemIndex}
                       onClick={() => handleNavigation(item.path, item.href)}
-                      className="flex items-center gap-2 text-sm text-gray-600 hover:text-medical-blue transition-colors w-full text-left py-1"
+                      className="flex items-center gap-2 text-sm text-gray-600 hover:text-slate-700 transition-colors w-full text-left py-1"
                     >
                       <item.icon className="h-3 w-3" />
                       {item.label}

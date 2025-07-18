@@ -67,7 +67,7 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-100 via-emerald-50 to-white pb-16 md:pb-0">
+    <div className="min-h-screen bg-gradient-to-br from-white to-[#7aebcf] pb-16 md:pb-0">
       {/* Header */}
       <header className="bg-white/80 backdrop-blur-md border-b border-white/20 sticky top-0 z-40 shadow-blue-md">
         <div className="container mx-auto px-4 py-4">
@@ -77,13 +77,13 @@ const Index = () => {
                 <MapPin className="h-6 w-6 text-white" />
               </div>
               <div className="hidden sm:block">
-                <h1 className="text-2xl font-bold bg-gradient-to-r from-medical-blue to-medical-green bg-clip-text text-transparent">
+                <h1 className="text-2xl font-bold text-slate-800">
                   FarmaFinder
                 </h1>
-                <p className="text-sm text-muted-foreground">AI-Enhanced Health Companion</p>
+                <p className="text-sm text-slate-600">AI-Enhanced Health Companion</p>
               </div>
               <div className="sm:hidden">
-                <h1 className="text-lg font-bold bg-gradient-to-r from-medical-blue to-medical-green bg-clip-text text-transparent">
+                <h1 className="text-lg font-bold text-slate-800">
                   FarmaFinder
                 </h1>
               </div>
@@ -167,10 +167,10 @@ const Index = () => {
         <div className="animate-fade-in">
           {/* Hero Section */}
           <div className="text-center mb-8 md:mb-12">
-            <h2 className="text-3xl md:text-4xl lg:text-6xl font-bold mb-4 md:mb-6 bg-gradient-to-r from-medical-blue via-medical-teal to-medical-green bg-clip-text text-transparent">
+            <h2 className="text-3xl md:text-4xl lg:text-6xl font-bold mb-4 md:mb-6 text-slate-800">
               AI-Powered Healthcare
             </h2>
-            <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed px-4">
+            <p className="text-lg md:text-xl text-slate-700 max-w-2xl mx-auto leading-relaxed px-4">
               Intelligent reporting for comprehensive medication management.
             </p>
           </div>
@@ -182,7 +182,7 @@ const Index = () => {
                 <div className="w-12 h-12 md:w-16 md:h-16 medical-gradient rounded-2xl flex items-center justify-center mx-auto mb-2 md:mb-4 shadow-blue-sm">
                   <MapPin className="h-6 w-6 md:h-8 md:w-8 text-white" />
                 </div>
-                <CardTitle className="text-medical-blue text-sm md:text-base">Find Pharmacies</CardTitle>
+                <CardTitle className="text-slate-800 text-sm md:text-base">Find Pharmacies</CardTitle>
                 <CardDescription className="text-xs md:text-sm hidden md:block">
                   Smart location search with filters and real-time availability
                 </CardDescription>
@@ -194,7 +194,7 @@ const Index = () => {
                 <div className="w-12 h-12 md:w-16 md:h-16 bg-gradient-to-br from-medical-teal to-medical-green rounded-2xl flex items-center justify-center mx-auto mb-2 md:mb-4 shadow-blue-sm">
                   <Camera className="h-6 w-6 md:h-8 md:w-8 text-white" />
                 </div>
-                <CardTitle className="text-medical-teal text-sm md:text-base">Smart Scan</CardTitle>
+                <CardTitle className="text-slate-800 text-sm md:text-base">Smart Scan</CardTitle>
                 <CardDescription className="text-xs md:text-sm hidden md:block">
                   AI-powered prescription scanning with intelligent validation
                 </CardDescription>
@@ -206,7 +206,7 @@ const Index = () => {
                 <div className="w-12 h-12 md:w-16 md:h-16 bg-gradient-to-br from-medical-green to-medical-blue rounded-2xl flex items-center justify-center mx-auto mb-2 md:mb-4 shadow-blue-sm">
                   <Mic className="h-6 w-6 md:h-8 md:w-8 text-white" />
                 </div>
-                <CardTitle className="text-medical-green text-sm md:text-base">Enhanced Voice AI</CardTitle>
+                <CardTitle className="text-slate-800 text-sm md:text-base">Enhanced Voice AI</CardTitle>
                 <CardDescription className="text-xs md:text-sm hidden md:block">
                   Multi-language support with premium voice synthesis
                 </CardDescription>
@@ -218,7 +218,7 @@ const Index = () => {
                 <div className="w-12 h-12 md:w-16 md:h-16 bg-gradient-to-br from-purple-500 to-medical-blue rounded-2xl flex items-center justify-center mx-auto mb-2 md:mb-4 shadow-blue-sm">
                   <FileText className="h-6 w-6 md:h-8 md:w-8 text-white" />
                 </div>
-                <CardTitle className="text-purple-600 text-sm md:text-base">Smart Reports</CardTitle>
+                <CardTitle className="text-slate-800 text-sm md:text-base">Smart Reports</CardTitle>
                 <CardDescription className="text-xs md:text-sm hidden md:block">
                   Interactive PDFs with charts and safety warnings
                 </CardDescription>
