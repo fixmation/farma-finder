@@ -205,7 +205,7 @@ const HowToUse: React.FC = () => {
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button 
                   onClick={() => navigate('/contact')}
-                  className="medical-gradient text-white"
+                  className="bg-gradient-to-r from-[#00bfff] to-green-500 text-white"
                 >
                   Contact Support
                 </Button>
