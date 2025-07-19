@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -37,7 +36,7 @@ const PDPA: React.FC = () => {
           {/* Introduction */}
           <Card className="glass-card">
             <CardHeader>
-              <CardTitle className="flex items-center gap-2">
+              <CardTitle className="flex items-center gap-2 bg-gradient-to-r from-[#00bfff] to-green-500 bg-clip-text text-transparent">
                 <Book className="h-6 w-6 text-medical-blue" />
                 About Sri Lanka's Personal Data Protection Act (PDPA)
               </CardTitle>
@@ -60,7 +59,7 @@ const PDPA: React.FC = () => {
           {/* FarmaFinder Compliance */}
           <Card className="glass-card">
             <CardHeader>
-              <CardTitle className="flex items-center gap-2">
+              <CardTitle className="flex items-center gap-2 bg-gradient-to-r from-[#00bfff] to-green-500 bg-clip-text text-transparent">
                 <CheckCircle className="h-6 w-6 text-green-600" />
                 How FarmaFinder Ensures PDPA Compliance
               </CardTitle>
@@ -88,7 +87,7 @@ const PDPA: React.FC = () => {
                     </li>
                   </ul>
                 </div>
-                
+
                 <div className="space-y-4">
                   <h4 className="font-semibold text-medical-blue">Data Security</h4>
                   <ul className="space-y-2 text-sm text-muted-foreground">
@@ -117,7 +116,7 @@ const PDPA: React.FC = () => {
           {/* Your Rights */}
           <Card className="glass-card">
             <CardHeader>
-              <CardTitle className="flex items-center gap-2">
+              <CardTitle className="flex items-center gap-2 bg-gradient-to-r from-[#00bfff] to-green-500 bg-clip-text text-transparent">
                 <Shield className="h-6 w-6 text-medical-green" />
                 Your Rights Under PDPA
               </CardTitle>
@@ -144,7 +143,7 @@ const PDPA: React.FC = () => {
                     </p>
                   </div>
                 </div>
-                
+
                 <div className="space-y-3">
                   <div className="p-3 border-l-4 border-purple-500">
                     <h5 className="font-medium">Right to Portability</h5>
@@ -172,7 +171,7 @@ const PDPA: React.FC = () => {
           {/* Data Processing Activities */}
           <Card className="glass-card">
             <CardHeader>
-              <CardTitle className="flex items-center gap-2">
+              <CardTitle className="flex items-center gap-2 bg-gradient-to-r from-[#00bfff] to-green-500 bg-clip-text text-transparent">
                 <AlertTriangle className="h-6 w-6 text-orange-500" />
                 How We Process Your Data
               </CardTitle>
@@ -199,7 +198,7 @@ const PDPA: React.FC = () => {
                   <h5 className="font-medium mb-1">Lawful Basis</h5>
                   <p className="text-xs text-muted-foreground">Consent & Legitimate Interest</p>
                 </div>
-                
+
                 <div className="text-center p-4 border rounded-lg">
                   <div className="w-12 h-12 bg-medical-green/10 rounded-lg flex items-center justify-center mx-auto mb-2">
                     <CheckCircle className="h-6 w-6 text-medical-green" />
@@ -207,7 +206,7 @@ const PDPA: React.FC = () => {
                   <h5 className="font-medium mb-1">Data Retention</h5>
                   <p className="text-xs text-muted-foreground">Only as long as necessary</p>
                 </div>
-                
+
                 <div className="text-center p-4 border rounded-lg">
                   <div className="w-12 h-12 bg-medical-teal/10 rounded-lg flex items-center justify-center mx-auto mb-2">
                     <Book className="h-6 w-6 text-medical-teal" />
@@ -222,7 +221,7 @@ const PDPA: React.FC = () => {
           {/* Contact Information */}
           <Card className="glass-card">
             <CardHeader>
-              <CardTitle>Data Protection Contact</CardTitle>
+              <CardTitle className="flex items-center gap-2 bg-gradient-to-r from-[#00bfff] to-green-500 bg-clip-text text-transparent">Data Protection Contact</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="bg-gray-50 p-4 rounded-lg space-y-2">
@@ -231,7 +230,7 @@ const PDPA: React.FC = () => {
                 <p className="text-sm text-muted-foreground">Phone: +94 11 123 4567</p>
                 <p className="text-sm text-muted-foreground">Address: Data Protection Officer, FarmaFinder, Colombo, Sri Lanka</p>
               </div>
-              
+
               <div className="mt-4 p-4 bg-blue-50 rounded-lg">
                 <p className="text-sm text-blue-800">
                   <strong>Note:</strong> You also have the right to lodge a complaint with the 

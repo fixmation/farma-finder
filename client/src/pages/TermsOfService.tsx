@@ -25,7 +25,7 @@ const TermsOfService: React.FC = () => {
 
         <Card className="max-w-4xl mx-auto shadow-blue-lg">
           <CardHeader className="text-center">
-            <CardTitle className="text-3xl font-bold bg-gradient-to-r from-medical-blue to-medical-green bg-clip-text text-transparent">
+            <CardTitle className="text-3xl font-bold bg-gradient-to-r from-[#00bfff] to-green-500 bg-clip-text text-transparent">
               Terms of Service
             </CardTitle>
             <p className="text-muted-foreground">Last updated: July 2025</p>
