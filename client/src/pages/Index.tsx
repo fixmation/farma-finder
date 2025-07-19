@@ -77,7 +77,7 @@ const Index = () => {
                 <MapPin className="h-6 w-6 text-white" />
               </div>
               <div className="hidden sm:block">
-                <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-green-600 bg-clip-text text-transparent">
+                <h1 className="text-2xl font-bold bg-gradient-to-r from-[#00bfff] to-green-600 bg-clip-text text-transparent">
                   FarmaFinder
                 </h1>
                 <p className="text-sm text-slate-600">AI-Enhanced Health Companion</p>
