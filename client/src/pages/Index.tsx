@@ -287,7 +287,7 @@ const Index = () => {
               </div>
               <Button
                 onClick={() => navigate('/lab-booking')}
-                className="w-full medical-gradient text-white mt-6"
+                className="w-full bg-gradient-to-r from-[#00bfff] to-green-500 text-white mt-6"
               >
                 Book Home Visit
               </Button>
