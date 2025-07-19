@@ -73,7 +73,7 @@ const Index = () => {
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 medical-gradient rounded-xl flex items-center justify-center shadow-blue-sm">
+              <div className="w-10 h-10 bg-gradient-to-br from-[#00bfff] to-green-500 rounded-xl flex items-center justify-center shadow-blue-sm">
                 <MapPin className="h-6 w-6 text-white" />
               </div>
               <div className="hidden sm:block">
