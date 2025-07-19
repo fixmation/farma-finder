@@ -157,6 +157,22 @@ const LabBooking: React.FC = () => {
           {/* Laboratory Selection */}
           <div className="space-y-4">
             <h2 className="text-xl font-semibold mb-4">Select Laboratory</h2>
+            <select 
+              onChange={(e) => {
+                const selectedId = e.target.value;
+                const lab = laboratories.find(l => l.id === selectedId);
+                setSelectedLab(lab || null);
+              }} 
+              value={selectedLab?.id || ''}
+              className="block w-full mb-4 p-2 border border-gray-300 rounded"
+            >
+              <option value="" disabled>Select a Laboratory</option>
+              {laboratories.map((lab) => (
+                <option key={lab.id} value={lab.id}>
+                  {lab.business_name}
+                </option>
+              ))}
+            </select>
             {laboratories.map((lab: Laboratory) => (
               <Card 
                 key={lab.id} 
