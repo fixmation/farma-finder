@@ -245,7 +245,7 @@ const PDPA: React.FC = () => {
           {/* Back to Registration */}
           <div className="text-center py-6">
             <Link to="/">
-              <Button className="medical-gradient text-white">
+              <Button className="bg-gradient-to-r from-[#00bfff] to-green-500 text-white">
                 Back to FarmaFinder
               </Button>
             </Link>
