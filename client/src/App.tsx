@@ -14,6 +14,10 @@ import TermsOfService from "./pages/TermsOfService";
 import HowToUse from "./pages/HowToUse";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
+import PrescriptionScanner from "./pages/PrescriptionScanner";
+import VoiceAssistant from "./pages/VoiceAssistant";
+import DrugInfo from "./pages/DrugInfo";
+import Privacy from "./pages/Privacy";
 
 const queryClient = new QueryClient();
 
@@ -30,7 +34,11 @@ const App = () => (
             <Route path="/admin-auth" element={<AdminAuth />} />
             <Route path="/lab-booking" element={<LabBooking />} />
             <Route path="/pharmacies" element={<Index />} />
-            <Route path="/drug-information" element={<Index />} />
+            <Route path="/prescription-scanner" element={<PrescriptionScanner />} />
+            <Route path="/voice-assistant" element={<VoiceAssistant />} />
+            <Route path="/drug-info" element={<DrugInfo />} />
+            <Route path="/drug-information" element={<DrugInfo />} />
+            <Route path="/privacy" element={<Privacy />} />
             <Route path="/pdpa" element={<PDPA />} />
             <Route path="/terms" element={<TermsOfService />} />
             <Route path="/how-to-use" element={<HowToUse />} />
