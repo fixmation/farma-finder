@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -125,9 +124,28 @@ const DrugInformation: React.FC<DrugInformationProps> = ({ selectedDrug }) => {
     }
   }, [selectedDrug]);
 
+  // Function to search the drug information
+  const fetchDrugInformationFromAPI = async (drugName: string, apiKey: string) => {
+    const endpoint = `https://api.drugbank.com/v1/endpoint/${encodeURIComponent(drugName)}?region=lk`;
+    try {
+      const response = await fetch(endpoint, {
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${apiKey}`
+        }
+      });
+      if (!response.ok) {
+        throw new Error(`Error fetching data: ${response.statusText}`);
+      }
+      return response.json();
+    } catch (error) {
+      console.error('Failed to fetch from Drugbank API:', error);
+    }
+  };
+
   const handleSearch = async (term?: string) => {
     const searchQuery = term || searchTerm.toLowerCase().trim();
-    
+
     if (!searchQuery) {
       toast.error('Please enter a drug name to search');
       return;
@@ -137,17 +155,20 @@ const DrugInformation: React.FC<DrugInformationProps> = ({ selectedDrug }) => {
     setDrugInfo(null);
 
     try {
-      // Simulate API delay
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      const data = await fetchDrugInformationFromAPI(searchQuery, process.env.DRUGBANK_API_KEY as string);
 
-      // Search in Sri Lankan medicine database
-      const foundDrug = sriLankanMedicineDatabase[searchQuery];
-      
-      if (foundDrug) {
-        setDrugInfo(foundDrug);
-        toast.success(`Information found for ${foundDrug.name}`);
+      if (data) {
+        setDrugInfo(data);
+        toast.success(`Information found for ${data.name}`);
       } else {
-        toast.error(`No information found for "${searchQuery}". Try searching for: paracetamol, samahan, or siddhalepa balm`);
+        // Handle fallback to local database if needed
+        const foundDrug = sriLankanMedicineDatabase[searchQuery];
+        if (foundDrug) {
+          setDrugInfo(foundDrug);
+          toast.success(`Information found for ${foundDrug.name}`);
+        } else {
+          toast.error(`No information found for "${searchQuery}". Try searching for: paracetamol, samahan, or siddhalepa balm`);
+        }
       }
     } catch (error) {
       toast.error('Failed to search drug information');
@@ -213,7 +234,7 @@ const DrugInformation: React.FC<DrugInformationProps> = ({ selectedDrug }) => {
               {isLoading ? 'Searching...' : 'Search'}
             </Button>
           </div>
-          
+
           <div className="mt-3 text-sm text-muted-foreground text-center">
             Try searching: <span className="font-medium">paracetamol</span>, <span className="font-medium">aspirin</span>, or <span className="font-medium">amoxicillin</span>
           </div>
