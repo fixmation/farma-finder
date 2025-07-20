@@ -98,7 +98,7 @@ const MobileFooterPopup = () => {
             <div className="border-t pt-4 space-y-2">
               <div className="flex items-center justify-between">
                 <span className="text-xs text-gray-500">Version</span>
-                <Badge variant="outline" className="text-xs">v1.0.0</Badge>
+                <Badge variant="outline" className="text-xs">v1.0.1</Badge>
               </div>
               
               <div className="flex items-center justify-between">
@@ -113,7 +113,7 @@ const MobileFooterPopup = () => {
 
             <div className="text-center pt-2 border-t">
               <p className="text-xs text-gray-500">
-                © 2024 FarmaFinder. All rights reserved.
+                © 2025 FarmaFinder. All rights reserved.
               </p>
               <p className="text-xs text-gray-400 mt-1">
                 Proudly serving Sri Lanka 🇱🇰
