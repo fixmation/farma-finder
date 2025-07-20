@@ -37,7 +37,7 @@ const Footer: React.FC = () => {
               <Link to="/voice-assistant" className="block text-white/80 hover:text-white transition-colors text-sm">
                 Voice Assistant
               </Link>
-              <Link to="/drug-information" className="block text-white/80 hover:text-white transition-colors text-sm">
+              <Link to="/drug-info" className="block text-white/80 hover:text-white transition-colors text-sm">
                 Drug Information
               </Link>
               <Link to="/how-to-use" className="block text-white/80 hover:text-white transition-colors text-sm">
