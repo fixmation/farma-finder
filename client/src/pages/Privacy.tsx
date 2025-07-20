@@ -6,10 +6,10 @@ import PageLayout from '@/components/PageLayout';
 const Privacy = () => {
   return (
     <PageLayout title="Privacy Policy">
-      <div className="bg-gradient-to-br from-white to-[#7aebcf]/20">
-      <div className="container mx-auto px-4 py-8">
-        {/* Header */}
-        <div className="text-center mb-12">
+        <div className="min-h-screen bg-gradient-to-br from-white to-[#7aebcf]/20">
+          <div className="container mx-auto px-4 py-8">
+            {/* Header */}
+            <div className="text-center mb-12">
           <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-[#7aebcf] to-blue-500 rounded-full mb-4">
             <Shield className="h-8 w-8 text-white" />
           </div>
@@ -19,9 +19,9 @@ const Privacy = () => {
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
             Your privacy and data protection are our highest priorities
           </p>
-        </div>
+            </div>
 
-        <div className="max-w-4xl mx-auto space-y-8">
+            <div className="max-w-4xl mx-auto space-y-8">
           {/* Data Collection */}
           <Card>
             <CardHeader>
@@ -187,12 +187,13 @@ const Privacy = () => {
             </CardContent>
           </Card>
 
-          {/* Last Updated */}
-          <div className="text-center text-sm text-gray-500 pt-8 border-t">
-            Last updated: January 20, 2025
+              {/* Last Updated */}
+              <div className="text-center text-sm text-gray-500 pt-8 border-t">
+                Last updated: January 20, 2025
+              </div>
+            </div>
           </div>
         </div>
-      </div>
     </PageLayout>
   );
 };
