@@ -1,10 +1,12 @@
 import React from 'react';
 import { Shield, Lock, Eye, Database, UserCheck } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import PageLayout from '@/components/PageLayout';
 
 const Privacy = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-white to-[#7aebcf]/20">
+    <PageLayout title="Privacy Policy">
+      <div className="bg-gradient-to-br from-white to-[#7aebcf]/20">
       <div className="container mx-auto px-4 py-8">
         {/* Header */}
         <div className="text-center mb-12">
@@ -191,7 +193,7 @@ const Privacy = () => {
           </div>
         </div>
       </div>
-    </div>
+    </PageLayout>
   );
 };
 

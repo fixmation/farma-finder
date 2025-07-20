@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -9,6 +9,8 @@ import { FlaskConical, MapPin, Phone, Clock, Home, Calendar } from 'lucide-react
 import { toast } from 'sonner';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { apiRequest } from '@/lib/queryClient';
+import PageLayout from '@/components/PageLayout';
+import mapboxgl from 'mapbox-gl';
 
 interface Laboratory {
   id: string;
@@ -34,6 +36,9 @@ const LabBooking: React.FC = () => {
   });
 
   const queryClient = useQueryClient();
+  const mapContainer = useRef<HTMLDivElement>(null);
+  const map = useRef<mapboxgl.Map | null>(null);
+  const [mapLoaded, setMapLoaded] = useState(false);
 
   const customerLocation = { lat: 6.9271, lng: 79.8612 }; // Example: Colombo coordinates
 
@@ -42,10 +47,17 @@ const LabBooking: React.FC = () => {
     queryFn: () => fetch('/api/laboratories')
       .then(res => res.json())
       .then(labs => {
-        return labs.map(lab => ({
+        const labsWithDistance = labs.map(lab => ({
           ...lab,
           distance: calculateDistance(customerLocation, lab.location)
         })).sort((a, b) => a.distance - b.distance);
+        
+        // Initialize map with laboratory data
+        if (!mapLoaded && labs.length > 0) {
+          initializeMap(labsWithDistance);
+        }
+        
+        return labsWithDistance;
       })
   });
 
@@ -56,6 +68,51 @@ const LabBooking: React.FC = () => {
         // Implement logic if data contains provinces and districts mapping
       });
   }, []);
+
+  // Initialize Mapbox
+  const initializeMap = (labs: Laboratory[]) => {
+    if (!mapContainer.current || mapLoaded) return;
+
+    // Set Mapbox access token
+    mapboxgl.accessToken = import.meta.env.VITE_MAPBOX_TOKEN;
+
+    map.current = new mapboxgl.Map({
+      container: mapContainer.current,
+      style: 'mapbox://styles/mapbox/streets-v12',
+      center: [customerLocation.lng, customerLocation.lat],
+      zoom: 11
+    });
+
+    // Add customer location marker
+    new mapboxgl.Marker({ color: '#00bfff' })
+      .setLngLat([customerLocation.lng, customerLocation.lat])
+      .setPopup(new mapboxgl.Popup().setHTML('<h3>Your Location</h3><p>Colombo, Sri Lanka</p>'))
+      .addTo(map.current);
+
+    // Add laboratory markers
+    labs.forEach((lab, index) => {
+      if (lab.location) {
+        const marker = new mapboxgl.Marker({ color: '#10b981' })
+          .setLngLat([lab.location.lng, lab.location.lat])
+          .setPopup(new mapboxgl.Popup().setHTML(`
+            <div class="p-2">
+              <h3 class="font-bold text-sm">${lab.business_name}</h3>
+              <p class="text-xs text-gray-600">${lab.address}</p>
+              <p class="text-xs text-green-600 font-medium">Distance: ${lab.distance?.toFixed(1)} km</p>
+              ${lab.home_visit_available ? `<p class="text-xs text-blue-600">Home Visit: LKR ${lab.home_visit_charges}</p>` : ''}
+            </div>
+          `))
+          .addTo(map.current);
+
+        // Add click event to marker
+        marker.getElement().addEventListener('click', () => {
+          setSelectedLab(lab);
+        });
+      }
+    });
+
+    setMapLoaded(true);
+  };
 
   // Function to calculate distance between two coordinates
   function calculateDistance({ lat: lat1, lng: lng1 }, { lat: lat2, lng: lng2 }) {
@@ -146,12 +203,45 @@ const LabBooking: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-white to-[#7aebcf] p-4">
-      <div className="max-w-6xl mx-auto">
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold text-center mb-2">Laboratory Booking</h1>
-          <p className="text-gray-600 text-center">Book appointments with verified laboratories</p>
-        </div>
+    <PageLayout title="Laboratory Home Visits">
+      <div className="min-h-screen bg-gradient-to-br from-white to-[#7aebcf]/20 p-4">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-8">
+            <h1 className="text-4xl font-bold text-gray-900 mb-4">Laboratory Home Visits</h1>
+            <p className="text-xl text-gray-600">Book convenient home visit laboratory services across Sri Lanka</p>
+          </div>
+
+          {/* Interactive Map */}
+          <div className="mb-8">
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <MapPin className="h-5 w-5 text-[#10b981]" />
+                  Laboratory Locations Map
+                </CardTitle>
+                <CardDescription>
+                  Click on markers to view laboratory details and book services
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div 
+                  ref={mapContainer}
+                  className="w-full h-96 rounded-lg border border-gray-300"
+                  style={{ minHeight: '400px' }}
+                />
+                <div className="flex items-center gap-4 mt-4 text-sm text-gray-600">
+                  <div className="flex items-center gap-2">
+                    <div className="w-3 h-3 bg-[#00bfff] rounded-full"></div>
+                    <span>Your Location</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <div className="w-3 h-3 bg-[#10b981] rounded-full"></div>
+                    <span>Laboratories</span>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Laboratory Selection */}
@@ -340,7 +430,7 @@ const LabBooking: React.FC = () => {
 
                   <Button 
                     type="submit" 
-                    className="w-full bg-[#10b981] hover:bg-[#059669] text-white"
+                    className="w-full bg-gradient-to-r from-[#00bfff] to-green-500 hover:from-[#0099cc] hover:to-green-600 text-white border-none shadow-lg"
                     disabled={!selectedLab || bookingMutation.isPending}
                   >
                     {bookingMutation.isPending ? 'Submitting...' : 'Book Appointment'}
@@ -349,9 +439,10 @@ const LabBooking: React.FC = () => {
               </CardContent>
             </Card>
           </div>
+          </div>
         </div>
       </div>
-    </div>
+    </PageLayout>
   );
 };
 

@@ -1,65 +1,44 @@
-import React, { useState } from 'react';
-import { Search, Pill, AlertTriangle, Info, Clock, Heart } from 'lucide-react';
+import React, { useState, useMemo } from 'react';
+import { Search, Pill, AlertTriangle, Info, Clock, Heart, ChevronDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { sriLankanMedicines, medicineCategories, searchMedicines, type Medicine } from '@/data/sriLankanMedicines';
+import PageLayout from '@/components/PageLayout';
 
 const DrugInfo = () => {
   const [searchTerm, setSearchTerm] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState<string>('all');
+  const [selectedMedicine, setSelectedMedicine] = useState<Medicine | null>(null);
 
-  const commonDrugs = [
-    {
-      name: 'Paracetamol',
-      category: 'Pain Relief',
-      dosage: '500mg - 1000mg',
-      frequency: 'Every 4-6 hours',
-      uses: ['Fever', 'Headache', 'Body aches'],
-      sideEffects: ['Rare allergic reactions', 'Liver damage with overdose'],
-      warnings: ['Do not exceed 4g daily', 'Avoid with alcohol']
-    },
-    {
-      name: 'Amoxicillin',
-      category: 'Antibiotic',
-      dosage: '250mg - 500mg',
-      frequency: 'Every 8 hours',
-      uses: ['Bacterial infections', 'Respiratory infections', 'UTI'],
-      sideEffects: ['Nausea', 'Diarrhea', 'Skin rash'],
-      warnings: ['Complete full course', 'Take with food', 'Report allergic reactions']
-    },
-    {
-      name: 'Aspirin',
-      category: 'NSAID',
-      dosage: '75mg - 300mg',
-      frequency: 'Once daily',
-      uses: ['Heart protection', 'Blood thinning', 'Pain relief'],
-      sideEffects: ['Stomach irritation', 'Bleeding risk'],
-      warnings: ['Not for children under 16', 'Take with food', 'Monitor for bleeding']
+  const filteredMedicines = useMemo(() => {
+    let results = searchTerm ? searchMedicines(searchTerm) : sriLankanMedicines;
+    
+    if (selectedCategory !== 'all') {
+      results = results.filter(med => med.category === selectedCategory);
     }
-  ];
+    
+    return results;
+  }, [searchTerm, selectedCategory]);
 
   const categories = [
-    { name: 'Pain Relief', count: 45, icon: Heart },
-    { name: 'Antibiotics', count: 32, icon: Pill },
-    { name: 'Heart Medicine', count: 28, icon: Heart },
-    { name: 'Diabetes', count: 24, icon: AlertTriangle },
-    { name: 'Blood Pressure', count: 19, icon: Heart },
-    { name: 'Respiratory', count: 15, icon: Pill }
+    { name: 'Pain Relief', count: sriLankanMedicines.filter(m => m.category === 'Pain Relief').length, icon: Heart },
+    { name: 'Traditional Medicine', count: sriLankanMedicines.filter(m => m.category === 'Traditional Medicine').length, icon: Pill },
+    { name: 'Cardiovascular', count: sriLankanMedicines.filter(m => m.category === 'Cardiovascular').length, icon: Heart },
+    { name: 'Diabetes', count: sriLankanMedicines.filter(m => m.category === 'Diabetes').length, icon: AlertTriangle },
+    { name: 'Antibiotic', count: sriLankanMedicines.filter(m => m.category === 'Antibiotic').length, icon: Pill },
+    { name: 'Gastrointestinal', count: sriLankanMedicines.filter(m => m.category === 'Gastrointestinal').length, icon: Pill }
   ];
 
-  const filteredDrugs = searchTerm
-    ? commonDrugs.filter(drug =>
-        drug.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        drug.category.toLowerCase().includes(searchTerm.toLowerCase())
-      )
-    : commonDrugs;
-
   return (
-    <div className="min-h-screen bg-gradient-to-br from-white to-[#7aebcf]/20">
-      <div className="container mx-auto px-4 py-8">
-        {/* Header */}
-        <div className="text-center mb-12">
+    <PageLayout title="Drug Information Database">
+        <div className="min-h-screen bg-gradient-to-br from-white to-[#7aebcf]/20">
+          <div className="container mx-auto px-4 py-8">
+            {/* Header */}
+            <div className="text-center mb-12">
           <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-[#7aebcf] to-blue-500 rounded-full mb-4">
             <Pill className="h-8 w-8 text-white" />
           </div>
@@ -69,23 +48,63 @@ const DrugInfo = () => {
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
             Comprehensive medication information including dosage, side effects, and safety warnings
           </p>
-        </div>
+            </div>
 
-        {/* Search */}
-        <div className="max-w-2xl mx-auto mb-8">
-          <div className="relative">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
-            <Input
-              placeholder="Search for medications (e.g., Paracetamol, Amoxicillin)"
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="pl-10 h-12 text-lg"
-            />
-          </div>
-        </div>
+            {/* Enhanced Search Section */}
+            <div className="max-w-4xl mx-auto mb-8">
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <Search className="h-5 w-5" />
+                Sri Lankan Medicine Search
+              </CardTitle>
+              <CardDescription>Search from our comprehensive database of Sri Lankan registered medicines</CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="grid md:grid-cols-2 gap-4">
+                <div className="relative">
+                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
+                  <Input
+                    placeholder="Search medicine name (e.g., Panadol, Samahan, Glucophage)"
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    className="pl-10 h-12 text-lg"
+                  />
+                </div>
+                <Select value={selectedCategory} onValueChange={setSelectedCategory}>
+                  <SelectTrigger className="h-12">
+                    <SelectValue placeholder="Select category" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="all">All Categories</SelectItem>
+                    {medicineCategories.map((category) => (
+                      <SelectItem key={category} value={category}>{category}</SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+              
+              {/* Quick Search Suggestions */}
+              <div className="flex flex-wrap gap-2">
+                <span className="text-sm text-gray-600">Popular searches:</span>
+                {['Panadol', 'Samahan', 'Amoxil', 'Glucophage'].map((medicine) => (
+                  <Button
+                    key={medicine}
+                    variant="outline"
+                    size="sm"
+                    onClick={() => setSearchTerm(medicine)}
+                    className="h-7 px-3 text-xs bg-gradient-to-r from-green-500/10 to-[#00bfff]/10 hover:from-green-500/20 hover:to-[#00bfff]/20 border-green-300"
+                  >
+                    {medicine}
+                  </Button>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
+            </div>
 
-        {/* Categories */}
-        <div className="max-w-6xl mx-auto mb-8">
+            {/* Categories */}
+            <div className="max-w-6xl mx-auto mb-8">
           <h2 className="text-2xl font-bold text-gray-900 mb-6">Browse by Category</h2>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
             {categories.map((category, index) => {
@@ -103,15 +122,15 @@ const DrugInfo = () => {
               );
             })}
           </div>
-        </div>
+            </div>
 
-        {/* Drug Results */}
-        <div className="max-w-6xl mx-auto">
+            {/* Drug Results */}
+            <div className="max-w-6xl mx-auto">
           <h2 className="text-2xl font-bold text-gray-900 mb-6">
             {searchTerm ? `Search Results for "${searchTerm}"` : 'Common Medications'}
           </h2>
           
-          {filteredDrugs.length === 0 ? (
+          {filteredMedicines.length === 0 ? (
             <Card>
               <CardContent className="p-8 text-center">
                 <Pill className="h-12 w-12 text-gray-400 mx-auto mb-4" />
@@ -121,15 +140,24 @@ const DrugInfo = () => {
             </Card>
           ) : (
             <div className="grid lg:grid-cols-2 gap-6">
-              {filteredDrugs.map((drug, index) => (
+              {filteredMedicines.map((medicine, index) => (
                 <Card key={index} className="hover:shadow-lg transition-shadow">
                   <CardHeader>
                     <div className="flex items-center justify-between">
-                      <CardTitle className="text-xl">{drug.name}</CardTitle>
-                      <Badge variant="secondary">{drug.category}</Badge>
+                      <div>
+                        <CardTitle className="text-xl">{medicine.name}</CardTitle>
+                        <p className="text-sm text-gray-600">{medicine.genericName}</p>
+                      </div>
+                      <div className="text-right">
+                        <Badge variant="secondary">{medicine.category}</Badge>
+                        <p className="text-xs text-gray-500 mt-1">{medicine.price}</p>
+                      </div>
                     </div>
                     <CardDescription>
-                      {drug.dosage} • {drug.frequency}
+                      {medicine.dosageForm} • {medicine.strength} • {medicine.manufacturer}
+                      {medicine.locallyManufactured && (
+                        <Badge variant="outline" className="ml-2 text-xs">🇱🇰 Local</Badge>
+                      )}
                     </CardDescription>
                   </CardHeader>
                   <CardContent>
@@ -146,9 +174,20 @@ const DrugInfo = () => {
                           <span className="font-semibold text-sm">Medical Uses</span>
                         </div>
                         <div className="flex flex-wrap gap-2">
-                          {drug.uses.map((use, i) => (
+                          {medicine.uses.map((use, i) => (
                             <Badge key={i} variant="outline">{use}</Badge>
                           ))}
+                        </div>
+                        <div className="mt-3 p-2 bg-gray-50 rounded-lg">
+                          <p className="text-xs text-gray-600">
+                            <strong>NMRA Registration:</strong> {medicine.nmraRegistration} | 
+                            <strong> Availability:</strong> <span className={`ml-1 ${
+                              medicine.availability === 'available' ? 'text-green-600' : 
+                              medicine.availability === 'limited' ? 'text-yellow-600' : 'text-red-600'
+                            }`}>
+                              {medicine.availability.replace('_', ' ').toUpperCase()}
+                            </span>
+                          </p>
                         </div>
                       </TabsContent>
                       
@@ -158,7 +197,7 @@ const DrugInfo = () => {
                           <span className="font-semibold text-sm">Possible Side Effects</span>
                         </div>
                         <ul className="text-sm text-gray-600 space-y-1">
-                          {drug.sideEffects.map((effect, i) => (
+                          {medicine.sideEffects.map((effect, i) => (
                             <li key={i} className="flex items-center gap-2">
                               <div className="w-1.5 h-1.5 bg-orange-400 rounded-full"></div>
                               {effect}
@@ -173,7 +212,7 @@ const DrugInfo = () => {
                           <span className="font-semibold text-sm">Important Warnings</span>
                         </div>
                         <ul className="text-sm text-gray-600 space-y-1">
-                          {drug.warnings.map((warning, i) => (
+                          {medicine.warnings.map((warning, i) => (
                             <li key={i} className="flex items-center gap-2">
                               <div className="w-1.5 h-1.5 bg-red-400 rounded-full"></div>
                               {warning}
@@ -187,10 +226,10 @@ const DrugInfo = () => {
               ))}
             </div>
           )}
-        </div>
+            </div>
 
-        {/* Disclaimer */}
-        <div className="max-w-4xl mx-auto mt-12">
+            {/* Disclaimer */}
+            <div className="max-w-4xl mx-auto mt-12">
           <Card className="bg-yellow-50 border-yellow-200">
             <CardContent className="p-6">
               <div className="flex items-start gap-3">
@@ -206,9 +245,10 @@ const DrugInfo = () => {
               </div>
             </CardContent>
           </Card>
+          </div>
         </div>
       </div>
-    </div>
+    </PageLayout>
   );
 };
 

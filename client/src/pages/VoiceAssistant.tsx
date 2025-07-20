@@ -3,6 +3,7 @@ import { Mic, MicOff, Volume2, Globe, MessageCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+import PageLayout from '@/components/PageLayout';
 
 const VoiceAssistant = () => {
   const [isListening, setIsListening] = useState(false);
@@ -23,10 +24,11 @@ const VoiceAssistant = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-white to-[#7aebcf]/20">
-      <div className="container mx-auto px-4 py-8">
-        {/* Header */}
-        <div className="text-center mb-12">
+    <PageLayout title="Voice Assistant">
+        <div className="min-h-screen bg-gradient-to-br from-white to-[#7aebcf]/20">
+          <div className="container mx-auto px-4 py-8">
+          {/* Header */}
+          <div className="text-center mb-12">
           <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-[#7aebcf] to-blue-500 rounded-full mb-4">
             <MessageCircle className="h-8 w-8 text-white" />
           </div>
@@ -36,10 +38,10 @@ const VoiceAssistant = () => {
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
             Get instant answers about medications, drug interactions, and pharmacy information using voice commands
           </p>
-        </div>
+          </div>
 
-        {/* Language Selector */}
-        <div className="max-w-4xl mx-auto mb-8">
+          {/* Language Selector */}
+          <div className="max-w-4xl mx-auto mb-8">
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
@@ -53,9 +55,12 @@ const VoiceAssistant = () => {
                 {languages.map((lang) => (
                   <Button
                     key={lang.code}
-                    variant={selectedLanguage === lang.code ? "default" : "outline"}
                     onClick={() => setSelectedLanguage(lang.code)}
-                    className="flex items-center gap-2"
+                    className={`flex items-center gap-2 ${
+                      selectedLanguage === lang.code 
+                        ? 'bg-gradient-to-r from-[#00bfff] to-green-500 text-white border-none shadow-lg' 
+                        : 'bg-gradient-to-r from-green-500/20 to-[#00bfff]/20 hover:from-green-500/40 hover:to-[#00bfff]/40 border border-green-300'
+                    }`}
                   >
                     <span className="text-lg">{lang.flag}</span>
                     {lang.name}
@@ -64,10 +69,10 @@ const VoiceAssistant = () => {
               </div>
             </CardContent>
           </Card>
-        </div>
+          </div>
 
-        {/* Voice Interface */}
-        <div className="max-w-2xl mx-auto mb-8">
+          {/* Voice Interface */}
+          <div className="max-w-2xl mx-auto mb-8">
           <Card>
             <CardContent className="p-8 text-center">
               <div className={`w-24 h-24 rounded-full mx-auto mb-6 flex items-center justify-center transition-all duration-300 ${
@@ -96,7 +101,7 @@ const VoiceAssistant = () => {
               <Button
                 onClick={() => setIsListening(!isListening)}
                 size="lg"
-                className={isListening ? 'bg-red-500 hover:bg-red-600' : 'bg-gradient-to-r from-[#7aebcf] to-blue-500 hover:from-[#6dd8bc] hover:to-blue-600'}
+                className={isListening ? 'bg-red-500 hover:bg-red-600 text-white border-none shadow-lg' : 'bg-gradient-to-r from-[#00bfff] to-green-500 hover:from-[#0099cc] hover:to-green-600 text-white border-none shadow-lg'}
               >
                 {isListening ? (
                   <>
@@ -112,10 +117,10 @@ const VoiceAssistant = () => {
               </Button>
             </CardContent>
           </Card>
-        </div>
+          </div>
 
-        {/* Sample Questions */}
-        <div className="max-w-4xl mx-auto mb-8">
+          {/* Sample Questions */}
+          <div className="max-w-4xl mx-auto mb-8">
           <Card>
             <CardHeader>
               <CardTitle>Try These Questions</CardTitle>
@@ -134,10 +139,10 @@ const VoiceAssistant = () => {
               </div>
             </CardContent>
           </Card>
-        </div>
+          </div>
 
-        {/* Features */}
-        <div className="max-w-4xl mx-auto">
+          {/* Features */}
+          <div className="max-w-4xl mx-auto">
           <Card>
             <CardHeader>
               <CardTitle>Voice Assistant Features</CardTitle>
@@ -170,9 +175,10 @@ const VoiceAssistant = () => {
               </div>
             </CardContent>
           </Card>
+          </div>
         </div>
       </div>
-    </div>
+    </PageLayout>
   );
 };
 

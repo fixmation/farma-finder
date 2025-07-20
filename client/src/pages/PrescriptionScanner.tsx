@@ -2,13 +2,15 @@ import React from 'react';
 import { Camera, Upload, Scan, AlertCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import PageLayout from '@/components/PageLayout';
 
 const PrescriptionScanner = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-white to-[#7aebcf]/20">
-      <div className="container mx-auto px-4 py-8">
-        {/* Header */}
-        <div className="text-center mb-12">
+    <PageLayout title="AI Prescription Scanner">
+      <div className="min-h-screen bg-gradient-to-br from-white to-[#7aebcf]/20">
+        <div className="container mx-auto px-4 py-8">
+          {/* Header */}
+          <div className="text-center mb-12">
           <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-[#7aebcf] to-blue-500 rounded-full mb-4">
             <Scan className="h-8 w-8 text-white" />
           </div>
@@ -18,10 +20,10 @@ const PrescriptionScanner = () => {
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
             Upload your prescription and get instant medication analysis with pharmacy availability
           </p>
-        </div>
+          </div>
 
-        {/* Upload Section */}
-        <div className="max-w-4xl mx-auto">
+          {/* Upload Section */}
+          <div className="max-w-4xl mx-auto">
           <Card className="mb-8">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
@@ -42,11 +44,11 @@ const PrescriptionScanner = () => {
                   Supports PNG, JPG, JPEG files up to 10MB
                 </p>
                 <div className="flex gap-4 justify-center">
-                  <Button className="bg-gradient-to-r from-[#7aebcf] to-blue-500 hover:from-[#6dd8bc] hover:to-blue-600">
+                  <Button className="bg-gradient-to-r from-[#00bfff] to-green-500 hover:from-[#0099cc] hover:to-green-600 text-white border-none shadow-lg">
                     <Camera className="h-4 w-4 mr-2" />
                     Take Photo
                   </Button>
-                  <Button variant="outline">
+                  <Button className="bg-gradient-to-r from-green-500 to-[#00bfff] hover:from-green-600 hover:to-[#0099cc] text-white border-none shadow-lg">
                     <Upload className="h-4 w-4 mr-2" />
                     Browse Files
                   </Button>
@@ -131,9 +133,10 @@ const PrescriptionScanner = () => {
               </div>
             </CardContent>
           </Card>
+          </div>
         </div>
       </div>
-    </div>
+    </PageLayout>
   );
 };
 

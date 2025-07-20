@@ -161,17 +161,23 @@ export const EnhancedPrescriptionUpload: React.FC = () => {
                     <SelectValue placeholder="Choose a verified pharmacy" />
                   </SelectTrigger>
                   <SelectContent>
-                    {pharmacies.map((pharmacy) => (
-                      <SelectItem key={pharmacy.id} value={pharmacy.id}>
-                        <div className="flex flex-col">
-                          <span className="font-medium">{pharmacy.business_name}</span>
-                          <span className="text-xs text-muted-foreground flex items-center">
-                            <MapPin className="h-3 w-3 mr-1" />
-                            {pharmacy.address.substring(0, 50)}...
-                          </span>
-                        </div>
+                    {pharmacies.length === 0 ? (
+                      <SelectItem value="no-pharmacy" disabled>
+                        No Pharmacy Found
                       </SelectItem>
-                    ))}
+                    ) : (
+                      pharmacies.map((pharmacy) => (
+                        <SelectItem key={pharmacy.id} value={pharmacy.id}>
+                          <div className="flex flex-col">
+                            <span className="font-medium">{pharmacy.business_name}</span>
+                            <span className="text-xs text-muted-foreground flex items-center">
+                              <MapPin className="h-3 w-3 mr-1" />
+                              {pharmacy.address.substring(0, 50)}...
+                            </span>
+                          </div>
+                        </SelectItem>
+                      ))
+                    )}
                   </SelectContent>
                 </Select>
                 {selectedPharmacyData && (
@@ -231,7 +237,7 @@ export const EnhancedPrescriptionUpload: React.FC = () => {
             <Button
               onClick={uploadPrescription}
               disabled={!selectedFile || !selectedPharmacy || uploading}
-              className="flex-1"
+              className="flex-1 bg-gradient-to-r from-[#00bfff] to-green-500 hover:from-[#0099cc] hover:to-green-600 text-white border-none shadow-lg"
             >
               <Upload className="h-4 w-4 mr-2" />
               {uploading ? 'Uploading...' : 'Upload Prescription'}
@@ -240,7 +246,7 @@ export const EnhancedPrescriptionUpload: React.FC = () => {
             <Button
               onClick={takePhoto}
               variant="outline"
-              className="flex-1"
+              className="flex-1 bg-gradient-to-r from-green-500/20 to-[#00bfff]/20 hover:from-green-500/40 hover:to-[#00bfff]/40 border border-green-300"
             >
               <Camera className="h-4 w-4 mr-2" />
               Take Photo
