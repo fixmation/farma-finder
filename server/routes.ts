@@ -3,6 +3,7 @@ import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import { z } from "zod";
 import { insertLabBookingSchema, insertPharmacyDetailsSchema, insertLaboratoryDetailsSchema, insertProfileSchema } from "@shared/schema";
+import drugRoutes from "./routes/drugs";
 
 export async function registerRoutes(app: Express): Promise<Server> {
   // API Routes for the lab booking application
@@ -314,6 +315,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.json({ token: null, error: 'Token not configured' });
     }
   });
+
+  // Drug analysis routes with Gemini AI
+  app.use("/api/drugs", drugRoutes);
 
   // Health check endpoint
   app.get("/api/health", (req, res) => {

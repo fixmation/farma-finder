@@ -7,8 +7,7 @@ import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { sriLankanMedicines, medicineCategories, searchMedicines, getMedicineSuggestions, type Medicine } from '@/data/sriLankanMedicines';
-import { nmraDrugDatabase, searchNmraDrugs } from '@/data/nmraDrugDatabase';
-import { nmraComprehensiveDatabase, searchNMRAComprehensive, getNMRADrugSuggestions } from '@/data/nmraComprehensiveDatabase';
+import { completeNMRADatabase, searchCompleteNMRADatabase, getNMRADrugSuggestions } from '@/data/completeNMRADatabase';
 import PageLayout from '@/components/PageLayout';
 
 const DrugInfo = () => {
@@ -20,11 +19,11 @@ const DrugInfo = () => {
   const [showSuggestions, setShowSuggestions] = useState(false);
 
   // Combine all databases for comprehensive search
-  const allMedicines = [...sriLankanMedicines, ...nmraDrugDatabase];
+  const allMedicines = [...sriLankanMedicines, ...completeNMRADatabase];
 
   const filteredMedicines = useMemo(() => {
     let results = searchTerm ? 
-      [...searchMedicines(searchTerm), ...searchNmraDrugs(searchTerm)] : 
+      [...searchMedicines(searchTerm), ...searchCompleteNMRADatabase(searchTerm, 50)] : 
       allMedicines;
     
     if (selectedCategory !== 'all') {

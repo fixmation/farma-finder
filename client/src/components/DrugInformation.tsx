@@ -7,7 +7,8 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Search, AlertTriangle, Info, Clock, Shield, ChevronDown } from 'lucide-react';
 import { toast } from 'sonner';
 import { sriLankanMedicines, Medicine, searchMedicines } from '@/data/sriLankanMedicines';
-import { nmraDrugDatabase, searchNmraDrugs } from '@/data/nmraDrugDatabase';
+import { completeNMRADatabase, searchCompleteNMRADatabase, getNMRADrugSuggestions } from '@/data/completeNMRADatabase';
+import DrugAnalysisCard from './DrugAnalysisCard';
 
 interface DrugInformationProps {
   selectedDrug?: string | null;
@@ -141,9 +142,9 @@ const DrugInformation: React.FC<DrugInformationProps> = ({ selectedDrug }) => {
     setDrugInfo(null);
 
     try {
-      // Search both databases using existing search functions
+      // Search complete NMRA database and local medicines
       const localResults = searchMedicines(searchQuery);
-      const nmraResults = searchNmraDrugs(searchQuery);
+      const nmraResults = searchCompleteNMRADatabase(searchQuery, 20);
       const allResults = [...localResults, ...nmraResults];
       
       const foundMedicine = allResults[0]; // Get the first (best) match
@@ -172,7 +173,7 @@ const DrugInformation: React.FC<DrugInformationProps> = ({ selectedDrug }) => {
           setDrugInfo(hardcodedDrug);
           toast.success(`Information found for ${hardcodedDrug.name}`);
         } else {
-          toast.error(`No information found for "${searchQuery}". Database contains ${nmraDrugDatabase.length + sriLankanMedicines.length} registered medications.`);
+          toast.error(`No information found for "${searchQuery}". Database contains ${completeNMRADatabase.length + sriLankanMedicines.length} registered medications.`);
         }
       }
     } catch (error) {
@@ -362,6 +363,12 @@ const DrugInformation: React.FC<DrugInformationProps> = ({ selectedDrug }) => {
               <p className="text-gray-700 bg-gray-50 p-3 rounded-lg">{drugInfo.storage}</p>
             </CardContent>
           </Card>
+
+          {/* AI-Powered Drug Analysis */}
+          <DrugAnalysisCard 
+            drugName={drugInfo.name} 
+            drugDetails={drugInfo} 
+          />
 
           {/* Disclaimer */}
           <Card className="glass-card border-orange-200 bg-orange-50">
