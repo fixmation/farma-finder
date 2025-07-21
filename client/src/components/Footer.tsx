@@ -73,7 +73,7 @@ const Footer: React.FC = () => {
           <div className="space-y-4">
             <h4 className="font-semibold text-lg">Contact</h4>
             <div className="space-y-2 text-sm text-white/80">
-              <p>Email: support@digifarmacy.lk</p>
+              <p>Email: support@digifarmacy.com</p>
               <p>Phone: +94 11 123 4567</p>
               <p>Address: Hanyu Pharmacy, Puttalam 61300, Sri Lanka</p>
               <Link 
@@ -113,7 +113,7 @@ const Footer: React.FC = () => {
               </a>
             </span>
             <span className="text-white/60" style={{ fontSize: '0.7rem' }}>
-              Hosted By: Hanyu Pharmacy, NMRA Registration #:
+              Hosted By: Hanyu Pharmacy, NMRA Registered:
             </span>
           </div>
         </div>

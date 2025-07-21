@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Globe, ChevronDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import {
@@ -7,6 +7,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 interface Language {
   code: string;
@@ -22,13 +23,12 @@ const languages: Language[] = [
 ];
 
 const LanguageSelector: React.FC = () => {
-  const [selectedLanguage, setSelectedLanguage] = useState<Language>(languages[0]);
+  const { currentLanguage, setLanguage } = useLanguage();
+  
+  const selectedLanguage = languages.find(lang => lang.code === currentLanguage) || languages[0];
 
   const handleLanguageChange = (language: Language) => {
-    setSelectedLanguage(language);
-    // Here you would implement actual language switching logic
-    // For now, we'll just show a notification
-    console.log(`Language changed to: ${language.name}`);
+    setLanguage(language.code);
   };
 
   return (

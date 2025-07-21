@@ -42,8 +42,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   useEffect(() => {
     // Check for existing session in localStorage
-    const storedUser = localStorage.getItem('farmaFinder_user');
-    const storedProfile = localStorage.getItem('farmaFinder_profile');
+    const storedUser = localStorage.getItem('digiFarmacy_user');
+    const storedProfile = localStorage.getItem('digiFarmacy_profile');
     
     if (storedUser && storedProfile) {
       setUser(JSON.parse(storedUser));
@@ -73,8 +73,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       };
 
       // Store in localStorage for demo purposes
-      localStorage.setItem('farmaFinder_user', JSON.stringify(newUser));
-      localStorage.setItem('farmaFinder_profile', JSON.stringify(newProfile));
+      localStorage.setItem('digiFarmacy_user', JSON.stringify(newUser));
+      localStorage.setItem('digiFarmacy_profile', JSON.stringify(newProfile));
       
       setUser(newUser);
       setProfile(newProfile);
@@ -104,8 +104,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         preferred_language: 'en'
       };
 
-      localStorage.setItem('farmaFinder_user', JSON.stringify(user));
-      localStorage.setItem('farmaFinder_profile', JSON.stringify(profile));
+      localStorage.setItem('digiFarmacy_user', JSON.stringify(user));
+      localStorage.setItem('digiFarmacy_profile', JSON.stringify(profile));
       
       setUser(user);
       setProfile(profile);
@@ -119,8 +119,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   const signOut = async () => {
     try {
-      localStorage.removeItem('farmaFinder_user');
-      localStorage.removeItem('farmaFinder_profile');
+      localStorage.removeItem('digiFarmacy_user');
+      localStorage.removeItem('digiFarmacy_profile');
       setUser(null);
       setProfile(null);
       toast.success('Signed out successfully!');

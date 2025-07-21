@@ -11,7 +11,7 @@ import { toast } from 'sonner';
 import { supabase } from '@/integrations/supabase/client';
 
 // Admin secret key - store this securely in production
-const ADMIN_SECRET_KEY = 'FARMA_ADMIN_2024_LK_SECRET';
+const ADMIN_SECRET_KEY = 'DIGIFARMACY_ADMIN_2024_LK_SECRET';
 const MAX_ADMIN_USERS = 2;
 
 const AdminAuth: React.FC = () => {

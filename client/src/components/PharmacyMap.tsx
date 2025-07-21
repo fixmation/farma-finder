@@ -79,7 +79,7 @@ const PharmacyMap = ({ searchQuery }: PharmacyMapProps) => {
     map.current = new mapboxgl.Map({
       container: mapContainer.current,
       style: 'mapbox://styles/mapbox/streets-v12',
-      center: [79.8612, 6.9271], // Sri Lanka center coordinates
+      center: [80.7718, 7.8731], // Sri Lanka center coordinates (Kandy)
       zoom: 8
     });
 

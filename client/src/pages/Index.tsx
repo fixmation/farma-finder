@@ -7,6 +7,8 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 import { useAuth } from "@/components/auth/AuthProvider";
 import { AuthModal } from "@/components/auth/AuthModal";
+import LanguageSelector from "@/components/LanguageSelector";
+import { useLanguage } from "@/contexts/LanguageContext";
 import { EnhancedVoiceAssistant } from "@/components/enhanced-voice/EnhancedVoiceAssistant";
 import { useNavigate } from "react-router-dom";
 import PharmacyMap from "@/components/PharmacyMap";
@@ -19,6 +21,7 @@ import { MobileNavigation } from "@/components/MobileNavigation";
 import { MobileSearchDropdown } from "@/components/MobileSearchDropdown";
 import LocationSearch from "@/components/LocationSearch";
 import MobileFooterPopup from "@/components/MobileFooterPopup";
+import WorkflowSummary from "@/components/WorkflowSummary";
 
 interface ExtractedMedication {
   id: string;
@@ -32,6 +35,7 @@ interface ExtractedMedication {
 
 const Index = () => {
   const { user, profile, signOut } = useAuth();
+  const { t } = useLanguage();
   const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState("");
   const [activeTab, setActiveTab] = useState("map");
@@ -80,7 +84,7 @@ const Index = () => {
                 <h1 className="text-2xl font-bold bg-gradient-to-r from-[#00bfff] to-green-600 bg-clip-text text-transparent">
                   DigiFarmacy
                 </h1>
-                <p className="text-sm text-slate-600">AI-Enhanced Health Companion</p>
+                <p className="text-sm text-slate-600">{t('hero.title')}</p>
               </div>
               <div className="sm:hidden">
                 <h1 className="text-lg font-bold bg-gradient-to-r from-blue-600 to-green-600 bg-clip-text text-transparent">
@@ -104,6 +108,9 @@ const Index = () => {
                 searchQuery={searchQuery}
                 onSearchChange={setSearchQuery}
               />
+
+              {/* Language Selector */}
+              <LanguageSelector />
 
               {user && profile ? (
                 <div className="flex items-center space-x-1 md:space-x-2">
@@ -174,6 +181,9 @@ const Index = () => {
               Intelligent reporting for comprehensive medication management.
             </p>
           </div>
+
+          {/* Workflow Summary Section */}
+          <WorkflowSummary />
 
           {/* Enhanced Feature Cards */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mb-8 md:mb-12">
