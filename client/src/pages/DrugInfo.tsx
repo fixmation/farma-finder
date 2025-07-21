@@ -73,7 +73,7 @@ const DrugInfo = () => {
             Drug Information Database
           </h1>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Comprehensive medication information including dosage, side effects, and safety warnings
+            Search for comprehensive information about medications approved by National Medicines Regulatory Authority (NMRA)
           </p>
             </div>
 
@@ -85,7 +85,7 @@ const DrugInfo = () => {
                 <Search className="h-5 w-5" />
                 Sri Lankan Medicine Search
               </CardTitle>
-              <CardDescription>Search from our comprehensive database of Sri Lankan registered medicines</CardDescription>
+              <CardDescription>Search for comprehensive information about medications approved by National Medicines Regulatory Authority (NMRA)</CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="grid md:grid-cols-2 gap-4">
