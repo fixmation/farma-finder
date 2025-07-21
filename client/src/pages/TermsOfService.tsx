@@ -130,7 +130,7 @@ const TermsOfService: React.FC = () => {
             <section>
               <h2 className="text-xl font-semibold text-medical-blue mb-3">7. Limitation of Liability</h2>
               <p className="text-gray-700">
-                FarmaFinder shall not be liable for any indirect, incidental, special, consequential, or punitive damages resulting from your use of the service. Our liability is limited to the maximum extent permitted by Sri Lankan law.
+                DigiFarmacy shall not be liable for any indirect, incidental, special, consequential, or punitive damages resulting from your use of the service. Our liability is limited to the maximum extent permitted by Sri Lankan law.
               </p>
             </section>
 
@@ -160,7 +160,7 @@ const TermsOfService: React.FC = () => {
                 For questions about these Terms of Service, please contact us at:
               </p>
               <div className="mt-3 p-3 bg-gray-50 rounded-lg">
-                <p className="text-gray-700">Email: support@farmafinder.lk</p>
+                <p className="text-gray-700">Email: support@digifarmacy.com</p>
                 <p className="text-gray-700">Phone: +94 11 123 4567</p>
                 <p className="text-gray-700">Address: Hanyu Pharmacy, Puttalam 61300, Sri Lanka</p>
               </div>
