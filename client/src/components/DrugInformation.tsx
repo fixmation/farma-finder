@@ -139,20 +139,13 @@ const DrugInformation: React.FC<DrugInformationProps> = ({ selectedDrug }) => {
     setDrugInfo(null);
 
     try {
-      const data = await fetchDrugInformationFromAPI(searchQuery, process.env.DRUGBANK_API_KEY as string);
-
-      if (data) {
-        setDrugInfo(data);
-        toast.success(`Information found for ${data.name}`);
+      // Search local NMRA database only - no external API calls
+      const foundDrug = sriLankanMedicineDatabase[searchQuery];
+      if (foundDrug) {
+        setDrugInfo(foundDrug);
+        toast.success(`Information found for ${foundDrug.name}`);
       } else {
-        // Handle fallback to local database if needed
-        const foundDrug = sriLankanMedicineDatabase[searchQuery];
-        if (foundDrug) {
-          setDrugInfo(foundDrug);
-          toast.success(`Information found for ${foundDrug.name}`);
-        } else {
-          toast.error(`No information found for "${searchQuery}". Try searching for: paracetamol, samahan, or siddhalepa balm`);
-        }
+        toast.error(`No information found for "${searchQuery}". Try searching for: paracetamol, samahan, or siddhalepa balm`);
       }
     } catch (error) {
       toast.error('Failed to search drug information');
@@ -175,7 +168,7 @@ const DrugInformation: React.FC<DrugInformationProps> = ({ selectedDrug }) => {
           Drug Information Search
         </h2>
         <p className="text-muted-foreground">
-          Search for comprehensive information about medications
+          Search for comprehensive information about medications approved by National Medicines Regulatory Authority (NMRA)
         </p>
       </div>
 

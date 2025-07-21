@@ -45,7 +45,7 @@ const DrugInfo = () => {
     if (value.length >= 3) {
       const localSuggestions = getMedicineSuggestions(value);
       const nmraSuggestions = getNMRADrugSuggestions(value);
-      const allSuggestions = [...new Set([...localSuggestions, ...nmraSuggestions])];
+      const allSuggestions = Array.from(new Set([...localSuggestions, ...nmraSuggestions]));
       setSuggestions(allSuggestions.slice(0, 10));
       setShowSuggestions(true);
     } else {
@@ -206,7 +206,7 @@ const DrugInfo = () => {
                     <CardDescription>
                       {medicine.dosageForm} • {medicine.strength} • {medicine.manufacturer}
                       {medicine.locallyManufactured && (
-                        <Badge variant="outline" className="ml-2 text-xs">🇱🇰 Local</Badge>
+                        <span className="ml-2 text-xs border border-gray-300 px-2 py-1 rounded-md">🇱🇰 Local</span>
                       )}
                     </CardDescription>
                   </CardHeader>
