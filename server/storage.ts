@@ -1,4 +1,4 @@
-// Simple in-memory storage implementation for FarmaFinder
+// Simple in-memory storage implementation for DigiFarmacy
 // This provides a working storage layer while database connectivity is being resolved
 
 import { 

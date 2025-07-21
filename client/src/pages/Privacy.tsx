@@ -180,7 +180,7 @@ const Privacy = () => {
                 If you have any questions about this Privacy Policy or your data:
               </p>
               <div className="space-y-2 text-sm">
-                <p><strong>Email:</strong> privacy@farmafinder.lk</p>
+                <p><strong>Email:</strong> privacy@digifarmacy.lk</p>
                 <p><strong>Phone:</strong> +94 11 123 4567</p>
                 <p><strong>Address:</strong> Hanyu Pharmacy, Puttalam 61300, Sri Lanka</p>
               </div>

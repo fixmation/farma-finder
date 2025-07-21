@@ -18,6 +18,7 @@ import PrescriptionScanner from "./pages/PrescriptionScanner";
 import VoiceAssistant from "./pages/VoiceAssistant";
 import DrugInfo from "./pages/DrugInfo";
 import Privacy from "./pages/Privacy";
+import Workflow from "./pages/Workflow";
 
 const queryClient = new QueryClient();
 
@@ -42,6 +43,7 @@ const App = () => (
             <Route path="/pdpa" element={<PDPA />} />
             <Route path="/terms" element={<TermsOfService />} />
             <Route path="/how-to-use" element={<HowToUse />} />
+            <Route path="/workflow" element={<Workflow />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="*" element={<NotFound />} />
           </Routes>

@@ -113,7 +113,7 @@ const MobileFooterPopup = () => {
 
             <div className="text-center pt-2 border-t">
               <p className="text-xs text-gray-500">
-                © 2025 FarmaFinder. All rights reserved.
+                © 2025 DigiFarmacy. All rights reserved.
               </p>
               <p className="text-xs text-gray-400 mt-1">
                 Proudly serving Sri Lanka 🇱🇰

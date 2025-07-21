@@ -25,7 +25,7 @@ const HowToUse: React.FC = () => {
         <Card className="max-w-4xl mx-auto shadow-blue-lg">
           <CardHeader className="text-center">
             <CardTitle className="text-3xl font-bold bg-gradient-to-r from-[#00bfff] to-green-500 bg-clip-text text-transparent">
-              How to Use FarmaFinder
+              How to Use DigiFarmacy
             </CardTitle>
             <p className="text-muted-foreground">Your complete guide to using our AI-enhanced health companion</p>
           </CardHeader>
@@ -39,13 +39,13 @@ const HowToUse: React.FC = () => {
                 Getting Started
               </h2>
               <div className="bg-green-50 border border-green-200 rounded-lg p-4 mb-4">
-                <p className="text-green-800 font-medium">Welcome to FarmaFinder!</p>
+                <p className="text-green-800 font-medium">Welcome to DigiFarmacy!</p>
                 <p className="text-green-700 text-sm mt-1">
                   No registration required to start using our basic features. Sign up for free to access premium features and save your data.
                 </p>
               </div>
               <ol className="list-decimal list-inside space-y-2 text-gray-700 text-sm ml-4">
-                <li>Visit the FarmaFinder homepage</li>
+                <li>Visit the DigiFarmacy homepage</li>
                 <li>Choose from our main features: Find Pharmacies, Smart Scan, Voice AI, or Drug Info</li>
                 <li>For enhanced features, click "Sign In / Sign Up" (completely free)</li>
                 <li>Start exploring and managing your health information</li>

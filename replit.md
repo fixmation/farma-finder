@@ -118,6 +118,14 @@ The application is designed for scalability with a clear separation of concerns,
 
 ## Recent Changes
 
+### January 21, 2025
+- ✅ **Multi-Language Support**: Created LanguageSelector component with English, Sinhala, and Tamil dropdown in PageLayout header
+- ✅ **Comprehensive Workflow Diagram**: Created WorkflowDiagram component showing complete user journey from pharmacy discovery to medicine delivery
+- ✅ **Complete FarmaFinder → DigiFarmacy Rebranding**: Fixed all remaining instances across Privacy, TermsOfService, HowToUse, Footer, and storage files
+- ✅ **Workflow Page Creation**: Added dedicated /workflow route displaying complete application workflow with interactive diagram
+- ✅ **Dropdown Menu Component**: Implemented shadcn/ui dropdown-menu component for language selector functionality
+- ✅ **Enhanced Header Navigation**: Added language selector to PageLayout header with proper responsive design
+
 ### January 20, 2025
 - ✅ **Database Migration**: Successfully migrated from problematic Neon WebSocket connections to reliable in-memory storage
 - ✅ **Footer Routing Fixed**: Created all missing pages (PrescriptionScanner, VoiceAssistant, DrugInfo, Privacy) and fixed 404 errors

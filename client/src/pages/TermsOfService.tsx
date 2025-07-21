@@ -38,7 +38,7 @@ const TermsOfService: React.FC = () => {
                 <div>
                   <h4 className="font-semibold text-yellow-800">Important Fee Notice</h4>
                   <p className="text-yellow-700 text-sm mt-1">
-                    By uploading prescriptions to pharmacies through FarmaFinder, you may incur additional fees of LKR 100 or more for collection or delivery services. These fees are set by individual pharmacies and will be clearly displayed before confirmation.
+                    By uploading prescriptions to pharmacies through DigiFarmacy, you may incur additional fees of LKR 100 or more for collection or delivery services. These fees are set by individual pharmacies and will be clearly displayed before confirmation.
                   </p>
                 </div>
               </div>
@@ -47,7 +47,7 @@ const TermsOfService: React.FC = () => {
             <section>
               <h2 className="text-xl font-semibold text-medical-blue mb-3">1. Acceptance of Terms</h2>
               <p className="text-gray-700">
-                By accessing and using FarmaFinder ("the Service"), you accept and agree to be bound by the terms and provision of this agreement.
+                By accessing and using DigiFarmacy ("the Service"), you accept and agree to be bound by the terms and provision of this agreement.
               </p>
             </section>
 
@@ -56,7 +56,7 @@ const TermsOfService: React.FC = () => {
             <section>
               <h2 className="text-xl font-semibold text-medical-blue mb-3">2. Service Description</h2>
               <p className="text-gray-700 mb-3">
-                FarmaFinder is an AI-enhanced health companion that provides:
+                DigiFarmacy is an AI-enhanced health companion that provides:
               </p>
               <ul className="list-disc list-inside space-y-2 text-gray-700 ml-4">
                 <li>Pharmacy location services across Sri Lanka</li>
