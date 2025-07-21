@@ -208,16 +208,21 @@ const DrugInformation: React.FC<DrugInformationProps> = ({ selectedDrug }) => {
             <div className="flex-1">
               <Select onValueChange={(value) => setSearchTerm(value)}>
                 <SelectTrigger className="w-full">
-                  <SelectValue placeholder="Select a Sri Lankan medicine" />
+                  <SelectValue placeholder="Select from 4,921+ NMRA registered medicines" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="paracetamol">Paracetamol</SelectItem>
-                  <SelectItem value="aspirin">Aspirin</SelectItem>
-                  <SelectItem value="amoxicillin">Amoxicillin</SelectItem>
-                  <SelectItem value="siddhalepa balm">Siddhalepa Balm</SelectItem>
-                  <SelectItem value="link natural">Link Natural</SelectItem>
-                  <SelectItem value="samahan">Samahan</SelectItem>
-                  <SelectItem value="paspanguwa">Paspanguwa</SelectItem>
+                  {/* Local Sri Lankan medicines */}
+                  {sriLankanMedicines.map((medicine) => (
+                    <SelectItem key={medicine.id} value={medicine.name.toLowerCase()}>
+                      {medicine.name} - {medicine.category}
+                    </SelectItem>
+                  ))}
+                  {/* Complete NMRA registered medicines */}
+                  {completeNMRADatabase.slice(0, 200).map((medicine) => (
+                    <SelectItem key={medicine.id} value={medicine.name.toLowerCase()}>
+                      {medicine.name} - {medicine.category} (NMRA: {medicine.registrationNumber})
+                    </SelectItem>
+                  ))}
                 </SelectContent>
               </Select>
             </div>

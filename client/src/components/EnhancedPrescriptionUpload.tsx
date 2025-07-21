@@ -6,10 +6,10 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Upload, Camera, FileText, AlertTriangle, CheckCircle, MapPin } from 'lucide-react';
-// Removed supabase import - using server-side API calls instead
-// import { useAuth } from '@/components/auth/AuthProvider';
+import { Upload, Camera, FileText, AlertTriangle, CheckCircle, MapPin, Shield } from 'lucide-react';
 import { toast } from 'sonner';
+import PrescriptionValidator from './PrescriptionValidator';
+import { type PrescriptionValidation } from '@/utils/prescriptionValidator';
 
 interface Pharmacy {
   id: string;
@@ -19,10 +19,9 @@ interface Pharmacy {
 }
 
 export const EnhancedPrescriptionUpload: React.FC = () => {
-  // const { user } = useAuth();
   const [pharmacies, setPharmacies] = useState<Pharmacy[]>([]);
   const [selectedPharmacy, setSelectedPharmacy] = useState<string>('');
-  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const [validatedPrescription, setValidatedPrescription] = useState<{ file: File; validation: PrescriptionValidation } | null>(null);
   const [uploading, setUploading] = useState(false);
   const [uploadSuccess, setUploadSuccess] = useState(false);
   const [showCommissionNotice, setShowCommissionNotice] = useState(false);
@@ -45,39 +44,25 @@ export const EnhancedPrescriptionUpload: React.FC = () => {
     }
   };
 
-  const handleFileSelect = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
-    if (file) {
-      // Validate file type
-      if (!file.type.startsWith('image/')) {
-        toast.error('Please select an image file');
-        return;
-      }
-      
-      // Validate file size (max 10MB)
-      if (file.size > 10 * 1024 * 1024) {
-        toast.error('File size must be less than 10MB');
-        return;
-      }
-      
-      setSelectedFile(file);
-      setShowCommissionNotice(true);
-    }
+  const handleValidPrescription = (file: File, validation: PrescriptionValidation) => {
+    setValidatedPrescription({ file, validation });
+    setShowCommissionNotice(true);
   };
 
   const uploadPrescription = async () => {
-    if (!selectedFile || !selectedPharmacy) {
-      toast.error('Please select a file and pharmacy');
+    if (!validatedPrescription || !selectedPharmacy) {
+      toast.error('Please validate prescription and select pharmacy');
       return;
     }
 
     setUploading(true);
     
     try {
-      // Create FormData for file upload
+      // Create FormData for file upload with validation data
       const formData = new FormData();
-      formData.append('file', selectedFile);
+      formData.append('file', validatedPrescription.file);
       formData.append('pharmacy_id', selectedPharmacy);
+      formData.append('validation_data', JSON.stringify(validatedPrescription.validation));
 
       // Upload to server
       const response = await fetch('/api/prescriptions/upload', {
@@ -192,28 +177,23 @@ export const EnhancedPrescriptionUpload: React.FC = () => {
               </div>
             </div>
 
-            {/* File Upload */}
+            {/* Prescription Validation */}
             <div className="space-y-4">
-              <div>
-                <Label htmlFor="prescription-file">Upload Prescription Image</Label>
-                <Input
-                  id="prescription-file"
-                  type="file"
-                  accept="image/*"
-                  onChange={handleFileSelect}
-                  className="mt-1"
-                />
-                <p className="text-xs text-muted-foreground mt-1">
-                  Supported formats: JPG, PNG, WebP. Max size: 10MB
-                </p>
-              </div>
-
-              {selectedFile && (
+              <PrescriptionValidator
+                onValidPrescription={handleValidPrescription}
+                title="Prescription Upload with Validation"
+                description="Upload prescription with doctor verification"
+              />
+              
+              {validatedPrescription && (
                 <div className="p-3 bg-green-50 rounded-lg border border-green-200">
-                  <p className="text-sm font-medium text-green-900">Selected File:</p>
-                  <p className="text-sm text-green-700">{selectedFile.name}</p>
+                  <div className="flex items-center gap-2 mb-2">
+                    <Shield className="h-4 w-4 text-green-600" />
+                    <p className="text-sm font-medium text-green-900">Validated Prescription</p>
+                  </div>
+                  <p className="text-sm text-green-700">{validatedPrescription.file.name}</p>
                   <p className="text-xs text-green-600">
-                    Size: {(selectedFile.size / 1024 / 1024).toFixed(2)} MB
+                    Size: {(validatedPrescription.file.size / 1024 / 1024).toFixed(2)} MB
                   </p>
                 </div>
               )}
@@ -236,7 +216,7 @@ export const EnhancedPrescriptionUpload: React.FC = () => {
           <div className="flex flex-col sm:flex-row gap-3">
             <Button
               onClick={uploadPrescription}
-              disabled={!selectedFile || !selectedPharmacy || uploading}
+              disabled={!validatedPrescription || !selectedPharmacy || uploading}
               className="flex-1 bg-gradient-to-r from-[#00bfff] to-green-500 hover:from-[#0099cc] hover:to-green-600 text-white border-none shadow-lg"
             >
               <Upload className="h-4 w-4 mr-2" />

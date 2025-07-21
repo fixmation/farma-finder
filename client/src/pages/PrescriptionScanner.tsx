@@ -1,10 +1,17 @@
-import React from 'react';
-import { Camera, Upload, Scan, AlertCircle } from 'lucide-react';
+import React, { useState } from 'react';
+import { Camera, Upload, Scan, AlertCircle, Shield, FileCheck } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import PageLayout from '@/components/PageLayout';
+import PrescriptionValidator from '@/components/PrescriptionValidator';
+import { type PrescriptionValidation } from '@/utils/prescriptionValidator';
 
 const PrescriptionScanner = () => {
+  const [validatedPrescription, setValidatedPrescription] = useState<{ file: File; validation: PrescriptionValidation } | null>(null);
+
+  const handleValidPrescription = (file: File, validation: PrescriptionValidation) => {
+    setValidatedPrescription({ file, validation });
+  };
   return (
     <PageLayout title="AI Prescription Scanner">
       <div className="min-h-screen bg-gradient-to-br from-white to-[#7aebcf]/20">
@@ -22,40 +29,38 @@ const PrescriptionScanner = () => {
           </p>
           </div>
 
-          {/* Upload Section */}
-          <div className="max-w-4xl mx-auto">
-          <Card className="mb-8">
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <Camera className="h-5 w-5" />
-                Upload Prescription
-              </CardTitle>
-              <CardDescription>
-                Take a photo or upload an image of your prescription for AI analysis
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center hover:border-[#7aebcf] transition-colors">
-                <Upload className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                  Drop your prescription here
-                </h3>
-                <p className="text-gray-600 mb-4">
-                  Supports PNG, JPG, JPEG files up to 10MB
-                </p>
-                <div className="flex gap-4 justify-center">
-                  <Button className="bg-gradient-to-r from-[#00bfff] to-green-500 hover:from-[#0099cc] hover:to-green-600 text-white border-none shadow-lg">
-                    <Camera className="h-4 w-4 mr-2" />
-                    Take Photo
-                  </Button>
-                  <Button className="bg-gradient-to-r from-green-500 to-[#00bfff] hover:from-green-600 hover:to-[#0099cc] text-white border-none shadow-lg">
-                    <Upload className="h-4 w-4 mr-2" />
-                    Browse Files
-                  </Button>
+          {/* Prescription Validation Section */}
+          <div className="max-w-4xl mx-auto mb-8">
+            <PrescriptionValidator
+              onValidPrescription={handleValidPrescription}
+              title="AI Prescription Scanner with Validation"
+              description="Upload prescription with doctor verification for AI analysis"
+            />
+          </div>
+
+          {validatedPrescription && (
+            <Card className="mb-8">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <FileCheck className="h-5 w-5 text-green-600" />
+                  Validated Prescription - Ready for Analysis
+                </CardTitle>
+                <CardDescription>
+                  Prescription has been validated and is ready for AI scanning
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="bg-green-50 p-4 rounded-lg mb-4">
+                  <p className="text-green-800 font-medium">✓ Prescription meets all requirements</p>
+                  <p className="text-green-600 text-sm">File: {validatedPrescription.file.name}</p>
                 </div>
-              </div>
-            </CardContent>
-          </Card>
+                <Button className="w-full bg-gradient-to-r from-blue-500 to-green-500">
+                  <Scan className="h-4 w-4 mr-2" />
+                  Analyze with AI Scanner
+                </Button>
+              </CardContent>
+            </Card>
+          )}
 
           {/* Features */}
           <div className="grid md:grid-cols-3 gap-6 mb-8">
@@ -133,7 +138,6 @@ const PrescriptionScanner = () => {
               </div>
             </CardContent>
           </Card>
-          </div>
         </div>
       </div>
     </PageLayout>

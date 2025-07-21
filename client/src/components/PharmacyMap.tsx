@@ -42,8 +42,8 @@ const PharmacyMap = ({ searchQuery }: PharmacyMapProps) => {
   useEffect(() => {
     if (searchQuery) {
       const filtered = pharmacies.filter(pharmacy =>
-        pharmacy.business_name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        pharmacy.address.toLowerCase().includes(searchQuery.toLowerCase())
+        pharmacy.business_name?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        pharmacy.address?.toLowerCase().includes(searchQuery.toLowerCase())
       );
       setFilteredPharmacies(filtered);
     } else {

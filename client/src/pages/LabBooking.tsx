@@ -72,15 +72,37 @@ const LabBooking: React.FC = () => {
   // Initialize Mapbox
   const initializeMap = (labs: Laboratory[]) => {
     if (!mapContainer.current || mapLoaded) return;
+    
+    const mapboxToken = import.meta.env.VITE_MAPBOX_TOKEN;
+    if (!mapboxToken) {
+      console.error('VITE_MAPBOX_TOKEN not found');
+      toast.error('Map configuration missing');
+      return;
+    }
 
-    // Set Mapbox access token
-    mapboxgl.accessToken = import.meta.env.VITE_MAPBOX_TOKEN;
+    mapboxgl.accessToken = mapboxToken;
 
     map.current = new mapboxgl.Map({
       container: mapContainer.current,
       style: 'mapbox://styles/mapbox/streets-v12',
       center: [customerLocation.lng, customerLocation.lat],
-      zoom: 11
+      zoom: 12
+    });
+
+    // Add markers for laboratories
+    labs.forEach(lab => {
+      if (lab.location) {
+        new mapboxgl.Marker({ color: '#22C55E' })
+          .setLngLat([lab.location.lng, lab.location.lat])
+          .setPopup(new mapboxgl.Popup().setHTML(`
+            <div class="p-2">
+              <h3 class="font-semibold">${lab.business_name}</h3>
+              <p class="text-sm text-gray-600">${lab.address}</p>
+              <p class="text-sm text-blue-600">Distance: ${lab.distance?.toFixed(1)}km</p>
+            </div>
+          `))
+          .addTo(map.current!);
+      }
     });
 
     // Add customer location marker
@@ -88,28 +110,6 @@ const LabBooking: React.FC = () => {
       .setLngLat([customerLocation.lng, customerLocation.lat])
       .setPopup(new mapboxgl.Popup().setHTML('<h3>Your Location</h3><p>Colombo, Sri Lanka</p>'))
       .addTo(map.current);
-
-    // Add laboratory markers
-    labs.forEach((lab, index) => {
-      if (lab.location) {
-        const marker = new mapboxgl.Marker({ color: '#10b981' })
-          .setLngLat([lab.location.lng, lab.location.lat])
-          .setPopup(new mapboxgl.Popup().setHTML(`
-            <div class="p-2">
-              <h3 class="font-bold text-sm">${lab.business_name}</h3>
-              <p class="text-xs text-gray-600">${lab.address}</p>
-              <p class="text-xs text-green-600 font-medium">Distance: ${lab.distance?.toFixed(1)} km</p>
-              ${lab.home_visit_available ? `<p class="text-xs text-blue-600">Home Visit: LKR ${lab.home_visit_charges}</p>` : ''}
-            </div>
-          `))
-          .addTo(map.current);
-
-        // Add click event to marker
-        marker.getElement().addEventListener('click', () => {
-          setSelectedLab(lab);
-        });
-      }
-    });
 
     setMapLoaded(true);
   };
