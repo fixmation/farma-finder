@@ -56,12 +56,12 @@ const PDPA: React.FC = () => {
             </CardContent>
           </Card>
 
-          {/* FarmaFinder Compliance */}
+          {/* DigiFarmacy Compliance */}
           <Card className="glass-card">
             <CardHeader>
               <CardTitle className="flex items-center gap-2 bg-gradient-to-r from-[#00bfff] to-green-500 bg-clip-text text-transparent">
                 <CheckCircle className="h-6 w-6 text-green-600" />
-                How FarmaFinder Ensures PDPA Compliance
+                How DigiFarmacy Ensures PDPA Compliance
               </CardTitle>
             </CardHeader>
             <CardContent>
@@ -226,9 +226,9 @@ const PDPA: React.FC = () => {
             <CardContent>
               <div className="bg-gray-50 p-4 rounded-lg space-y-2">
                 <p className="font-medium">For any data protection concerns or to exercise your rights:</p>
-                <p className="text-sm text-muted-foreground">Email: privacy@farmafinder.lk</p>
+                <p className="text-sm text-muted-foreground">Email: support@digifarmacy.com</p>
                 <p className="text-sm text-muted-foreground">Phone: +94 11 123 4567</p>
-                <p className="text-sm text-muted-foreground">Address: Data Protection Officer, FarmaFinder, Colombo, Sri Lanka</p>
+                <p className="text-sm text-muted-foreground">Address: Data Protection Officer, DigiFarmacy, Colombo, Sri Lanka</p>
               </div>
 
               <div className="mt-4 p-4 bg-blue-50 rounded-lg">
@@ -245,7 +245,7 @@ const PDPA: React.FC = () => {
           <div className="text-center py-6">
             <Link to="/">
               <Button className="bg-gradient-to-r from-[#00bfff] to-green-500 text-white">
-                Back to FarmaFinder
+                Back to DigiFarmacy
               </Button>
             </Link>
           </div>

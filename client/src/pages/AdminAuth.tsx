@@ -155,7 +155,7 @@ const AdminAuth: React.FC = () => {
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="admin@farmafinder.lk"
+                placeholder="admin@digifarmacy.lk"
                 required
               />
             </div>

@@ -340,7 +340,7 @@ const Index = () => {
                 </TabsContent>
 
                 <TabsContent value="upload" className="mt-0">
-                  <div className="shadow-blue-sm">
+                  <div className="p-0 shadow-blue-sm">
                     <EnhancedPrescriptionUpload />
                   </div>
                 </TabsContent>

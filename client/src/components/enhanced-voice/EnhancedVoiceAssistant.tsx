@@ -109,6 +109,19 @@ export const EnhancedVoiceAssistant: React.FC = () => {
         return;
       }
 
+      // Request microphone permissions first
+      try {
+        await navigator.mediaDevices.getUserMedia({ audio: true });
+        toast.success('Microphone access granted - starting voice recognition...');
+      } catch (permissionError: any) {
+        if (permissionError.name === 'NotAllowedError') {
+          toast.error('Microphone access denied. Please allow microphone access in your browser settings.');
+        } else {
+          toast.error('Failed to access microphone. Please check your browser settings.');
+        }
+        return;
+      }
+
       const SpeechRecognitionConstructor = window.SpeechRecognition || window.webkitSpeechRecognition;
       recognitionRef.current = new SpeechRecognitionConstructor();
       
@@ -120,6 +133,7 @@ export const EnhancedVoiceAssistant: React.FC = () => {
       recognitionRef.current.onstart = () => {
         setIsListening(true);
         setTranscript('');
+        toast.success('Voice recording started - speak now!');
       };
 
       recognitionRef.current.onresult = (event) => {
@@ -137,7 +151,11 @@ export const EnhancedVoiceAssistant: React.FC = () => {
 
       recognitionRef.current.onerror = (event) => {
         setIsListening(false);
-        toast.error(`Speech recognition error: ${event.error}`);
+        if (event.error === 'not-allowed') {
+          toast.error('Microphone access denied. Please allow microphone access in your browser settings.');
+        } else {
+          toast.error(`Speech recognition error: ${event.error}`);
+        }
       };
 
       recognitionRef.current.start();

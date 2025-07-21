@@ -42,10 +42,10 @@ const Contact: React.FC = () => {
                 <CardContent>
                   <p className="text-gray-700 mb-2">For general inquiries and support:</p>
                   <a 
-                    href="mailto:support@farmafinder.lk" 
+                    href="mailto:support@digifarmacy.lk" 
                     className="text-medical-blue hover:text-medical-blue/80 font-medium"
                   >
-                    support@farmafinder.lk
+                    support@digifarmacy.com
                   </a>
                 </CardContent>
               </Card>
@@ -93,7 +93,7 @@ const Contact: React.FC = () => {
                 </CardHeader>
                 <CardContent>
                   <p className="text-gray-700">
-                    Monday - Friday: 8:00 AM - 6:00 PM<br />
+                    Monday - Friday: 9:00 AM - 6:00 PM<br />
                     Saturday: 9:00 AM - 5:00 PM<br />
                     Sunday: 10:00 AM - 4:00 PM
                   </p>
@@ -109,8 +109,8 @@ const Contact: React.FC = () => {
                   <p className="text-blue-600">Use the Smart Scan feature on the main page to upload and analyze your prescription.</p>
                 </div>
                 <div>
-                  <p className="font-medium text-blue-700">Are there any fees for using FarmaFinder?</p>
-                  <p className="text-blue-600">FarmaFinder is free to use. Individual pharmacies may charge collection or delivery fees.</p>
+                  <p className="font-medium text-blue-700">Are there any fees for using DigiFarmacy?</p>
+                  <p className="text-blue-600">DigiFarmacy is free to use. Individual pharmacies may charge collection or delivery fees.</p>
                 </div>
                 <div>
                   <p className="font-medium text-blue-700">How do I find nearby pharmacies?</p>

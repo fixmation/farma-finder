@@ -158,3 +158,12 @@ The application is designed for scalability with a clear separation of concerns,
 - ✅ **Laboratory Services**: Added Laboratory Home Visits pricing cards (LKR 2,500-7,500)
 - ✅ **Voice Assistant**: Improved Voice Assistant with comprehensive medical responses
 - ✅ **Database Integration**: All components now use server-side API calls instead of direct Supabase client calls
+
+### January 21, 2025 (Evening Updates)
+- ✅ **Fixed Multi-language Translation**: Language context now properly persists across app reload and translates universally
+- ✅ **Complete Branding Fix**: Changed all remaining FarmaFinder references to DigiFarmacy in Auth, PDPA, Contact, and AdminAuth pages
+- ✅ **Fixed Prescription Upload Layout**: Aligned prescription upload box to fill entire section area on desktop and mobile
+- ✅ **Enhanced Voice Assistant Microphone**: Added proper microphone permission handling with user-friendly error messages
+- ✅ **PDPA Compliance Update**: Updated all contact information to support@digifarmacy.com throughout PDPA documentation
+- ✅ **Button Color Consistency**: Applied #00bfff to green gradient colors across all button variants for better visibility
+- ✅ **Universal Scroll-to-Top**: Implemented smooth scroll-to-top functionality on all page loads throughout the app

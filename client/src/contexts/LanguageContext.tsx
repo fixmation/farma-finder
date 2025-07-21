@@ -137,7 +137,9 @@ interface LanguageProviderProps {
 }
 
 export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) => {
-  const [currentLanguage, setCurrentLanguage] = useState('en');
+  const [currentLanguage, setCurrentLanguage] = useState(() => {
+    return localStorage.getItem('language') || 'en';
+  });
 
   const setLanguage = (language: string) => {
     setCurrentLanguage(language);

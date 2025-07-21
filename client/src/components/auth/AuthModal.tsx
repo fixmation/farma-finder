@@ -174,7 +174,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="sm:max-w-md max-h-[90vh] overflow-y-auto shadow-blue-xl">
         <DialogHeader>
-          <DialogTitle>Welcome to FarmaFinder</DialogTitle>
+          <DialogTitle>Welcome to DigiFarmacy</DialogTitle>
           <DialogDescription>
             Sign in or create your account to access all features
           </DialogDescription>

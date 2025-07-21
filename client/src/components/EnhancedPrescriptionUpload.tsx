@@ -105,7 +105,7 @@ export const EnhancedPrescriptionUpload: React.FC = () => {
   const selectedPharmacyData = pharmacies.find(p => p.id === selectedPharmacy);
 
   return (
-    <div className="max-w-4xl mx-auto space-y-6">
+    <div className="p-4 md:p-6 max-w-none space-y-6">
       <Card className="glass-card shadow-blue-md">
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
