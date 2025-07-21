@@ -1,4 +1,3 @@
-
 import { useState, useRef, useCallback } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -24,14 +23,14 @@ const VoiceChatbot = ({ selectedDrug, onDrugQuery }: VoiceChatbotProps) => {
     {
       id: '1',
       role: 'assistant',
-      content: 'Hello! I\'m your FarmaFinder AI assistant. I can help you with finding pharmacies, understanding medications, prescription analysis, and navigating our platform. How can I assist you today?',
+      content: 'Hello! I\'m your DigiFarmacy AI assistant. I can help you with finding pharmacies, understanding medications, prescription analysis, and navigating our platform. How can I assist you today?',
       timestamp: new Date()
     }
   ]);
-  
+
   const [inputText, setInputText] = useState('');
   const [isProcessing, setIsProcessing] = useState(false);
-  
+
   const { toast } = useToast();
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
@@ -42,32 +41,32 @@ const VoiceChatbot = ({ selectedDrug, onDrugQuery }: VoiceChatbotProps) => {
   // Enhanced AI assistant with FarmaFinder knowledge
   const processAIQuery = (text: string) => {
     const query = text.toLowerCase();
-    
+
     // FarmaFinder specific responses
     if (query.includes('farmafinder') || query.includes('about this app')) {
       return 'FarmaFinder is an AI-enhanced health companion for Sri Lanka. We help you find verified pharmacies, analyze prescriptions using AI, get drug information, and manage your medications. Our platform connects patients with registered pharmacies across the country.';
     }
-    
+
     if (query.includes('find pharmacy') || query.includes('pharmacy near')) {
       return 'You can find nearby pharmacies using our interactive map. Click on the "Map" tab to see verified pharmacies in your area. We show only registered and verified pharmacies with their contact details, operating hours, and directions.';
     }
-    
+
     if (query.includes('prescription') || query.includes('scan')) {
       return 'Our Smart Scan feature uses AI to analyze prescription images. Upload a photo of your prescription, and our system will extract medication details, provide drug information, and help you find pharmacies that stock your medicines.';
     }
-    
+
     if (query.includes('voice') || query.includes('speak')) {
       return 'Use our Voice AI feature to interact hands-free! You can ask about medications, find pharmacies, or get health information using voice commands in English, Sinhala, or Tamil.';
     }
-    
+
     if (query.includes('language') || query.includes('sinhala') || query.includes('tamil')) {
       return 'FarmaFinder supports multiple languages: English, සිංහල (Sinhala), and தமிழ் (Tamil). You can switch languages in the voice assistant or ask me questions in your preferred language.';
     }
-    
+
     if (query.includes('pharmacy registration') || query.includes('register pharmacy')) {
       return 'Pharmacies can register by signing up with their business details, uploading pharmacist certificates, and business registration documents. After verification by our admin team, they can list products and receive customers.';
     }
-    
+
     if (query.includes('drug') || query.includes('medication') || query.includes('medicine')) {
       const drugPatterns = /(?:about|tell me about|what is|info on)\s+([a-zA-Z]+)/i;
       const match = text.match(drugPatterns);
@@ -77,24 +76,24 @@ const VoiceChatbot = ({ selectedDrug, onDrugQuery }: VoiceChatbotProps) => {
       }
       return 'I can provide detailed drug information including side effects, dosage, interactions, and safety warnings. Just tell me the name of the medication you\'re interested in.';
     }
-    
+
     if (query.includes('pdpa') || query.includes('privacy') || query.includes('data')) {
       return 'FarmaFinder is fully compliant with Sri Lanka\'s Personal Data Protection Act (PDPA). We protect your health data with encryption, secure storage, and strict access controls. Check our PDPA compliance page for details.';
     }
-    
+
     if (query.includes('commission') || query.includes('payment') || query.includes('payout')) {
       return 'Registered pharmacies earn commissions on each prescription fulfilled. They can track earnings in real-time and request payouts through LankaQR or bank transfers from their dashboard.';
     }
-    
+
     if (query.includes('help') || query.includes('how to')) {
       return 'I can help with: 1) Finding pharmacies near you, 2) Understanding your prescriptions, 3) Getting drug information, 4) Using voice features, 5) Pharmacy registration, 6) Account management. What would you like to know more about?';
     }
-    
+
     // General health and pharmacy guidance
     if (query.includes('side effect') || query.includes('interaction')) {
       return 'For detailed side effects and drug interactions, use our Drug Information feature. Always consult with a pharmacist or doctor for personalized medical advice. Our platform provides general information only.';
     }
-    
+
     // Default helpful response
     return `I understand you're asking about "${text}". As your FarmaFinder assistant, I can help you with finding pharmacies, understanding medications, prescription analysis, and platform features. Could you be more specific about what you'd like to know?`;
   };
@@ -154,7 +153,7 @@ const VoiceChatbot = ({ selectedDrug, onDrugQuery }: VoiceChatbotProps) => {
             Ask about pharmacies, medications, prescriptions, or how to use FarmaFinder
           </CardDescription>
         </CardHeader>
-        
+
         <CardContent className="flex-1 flex flex-col">
           {/* Messages */}
           <div className="flex-1 overflow-y-auto space-y-4 mb-4 pr-2">
@@ -187,7 +186,7 @@ const VoiceChatbot = ({ selectedDrug, onDrugQuery }: VoiceChatbotProps) => {
                 </div>
               </div>
             ))}
-            
+
             {isProcessing && (
               <div className="flex justify-start">
                 <div className="bg-gray-100 p-3 rounded-lg">

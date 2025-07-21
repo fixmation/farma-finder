@@ -1,5 +1,4 @@
-
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -11,12 +10,19 @@ import { LanguageProvider } from "@/contexts/LanguageContext";
 // Scroll to top utility
 const ScrollToTop = () => {
   const { pathname } = useLocation();
-  
-  React.useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }, [pathname]);
-  
-  return null;
+
+  useEffect(() => {
+    document.documentElement.style.scrollBehavior = 'smooth';
+    return () => {
+      document.documentElement.style.scrollBehavior = 'auto';
+    };
+  }, []);
+
+  return (
+    <>
+    {window.scrollTo({ top: 0, behavior: 'smooth' })}
+    </>
+  );
 };
 import Index from "./pages/Index";
 import Dashboard from "./pages/Dashboard";

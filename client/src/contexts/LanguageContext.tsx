@@ -141,6 +141,13 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) 
     return localStorage.getItem('language') || 'en';
   });
 
+  useEffect(() => {
+    const storedLanguage = localStorage.getItem('language');
+    if (storedLanguage && storedLanguage !== currentLanguage) {
+      setLanguage(storedLanguage);
+    }
+  }, [currentLanguage]);
+
   const setLanguage = (language: string) => {
     setCurrentLanguage(language);
     localStorage.setItem('language', language);

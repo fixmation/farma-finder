@@ -23,6 +23,16 @@ const VoiceAssistant = () => {
     "Emergency pharmacy contact"
   ];
 
+  const handleMicToggle = () => {
+    if (!isListening) {
+      navigator.mediaDevices.getUserMedia({ audio: true })
+        .then(() => setIsListening(true))
+        .catch(err => console.error('Mic permission denied: ', err));
+    } else {
+      setIsListening(false);
+    }
+  };
+
   return (
     <PageLayout title="Voice Assistant">
         <div className="min-h-screen bg-gradient-to-br from-white to-[#7aebcf]/20">
@@ -86,11 +96,11 @@ const VoiceAssistant = () => {
                   <Mic className="h-12 w-12 text-white" />
                 )}
               </div>
-              
+
               <h3 className="text-xl font-semibold mb-2">
                 {isListening ? 'Listening...' : 'Tap to speak'}
               </h3>
-              
+
               <p className="text-gray-600 mb-6">
                 {isListening 
                   ? 'I am listening to your question about medications or pharmacies'
@@ -99,7 +109,7 @@ const VoiceAssistant = () => {
               </p>
 
               <Button
-                onClick={() => setIsListening(!isListening)}
+                onClick={handleMicToggle}
                 size="lg"
                 className={isListening ? 'bg-red-500 hover:bg-red-600 text-white border-none shadow-lg' : 'bg-gradient-to-r from-[#00bfff] to-green-500 hover:from-[#0099cc] hover:to-green-600 text-white border-none shadow-lg'}
               >
