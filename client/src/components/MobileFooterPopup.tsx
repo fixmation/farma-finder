@@ -62,7 +62,7 @@ const MobileFooterPopup = () => {
         <DialogContent className="max-w-sm mx-auto">
           <DialogHeader>
             <DialogTitle className="flex items-center gap-2">
-              <div className="w-8 h-8 medical-gradient rounded-lg flex items-center justify-center">
+              <div className="w-8 h-8 medical-gradient rounded-lg flex items-center justify-center bg-[#b7f4f2]">
                 <MapPin className="h-4 w-4 text-white" />
               </div>
               DigiFarmacy
