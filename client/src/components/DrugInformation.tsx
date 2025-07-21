@@ -6,6 +6,8 @@ import { Badge } from '@/components/ui/badge';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Search, AlertTriangle, Info, Clock, Shield, ChevronDown } from 'lucide-react';
 import { toast } from 'sonner';
+import { sriLankanMedicines, Medicine, searchMedicines } from '@/data/sriLankanMedicines';
+import { nmraDrugDatabase, searchNmraDrugs } from '@/data/nmraDrugDatabase';
 
 interface DrugInformationProps {
   selectedDrug?: string | null;
@@ -128,7 +130,7 @@ const DrugInformation: React.FC<DrugInformationProps> = ({ selectedDrug }) => {
   // Removed external DrugBank API - now using local NMRA database
 
   const handleSearch = async (term?: string) => {
-    const searchQuery = term || searchTerm.toLowerCase().trim();
+    const searchQuery = (term || searchTerm).toLowerCase().trim();
 
     if (!searchQuery) {
       toast.error('Please enter a drug name to search');
@@ -139,13 +141,39 @@ const DrugInformation: React.FC<DrugInformationProps> = ({ selectedDrug }) => {
     setDrugInfo(null);
 
     try {
-      // Search local NMRA database only - no external API calls
-      const foundDrug = sriLankanMedicineDatabase[searchQuery];
-      if (foundDrug) {
-        setDrugInfo(foundDrug);
-        toast.success(`Information found for ${foundDrug.name}`);
+      // Search both databases using existing search functions
+      const localResults = searchMedicines(searchQuery);
+      const nmraResults = searchNmraDrugs(searchQuery);
+      const allResults = [...localResults, ...nmraResults];
+      
+      const foundMedicine = allResults[0]; // Get the first (best) match
+
+      if (foundMedicine) {
+        // Convert to DrugInfo format
+        const drugInfo: DrugInfo = {
+          name: foundMedicine.name,
+          genericName: foundMedicine.genericName,
+          category: foundMedicine.category,
+          description: foundMedicine.pharmacology || `${foundMedicine.name} is a pharmaceutical product manufactured by ${foundMedicine.manufacturer}.`,
+          uses: foundMedicine.uses,
+          dosage: foundMedicine.dosage,
+          sideEffects: foundMedicine.sideEffects,
+          warnings: foundMedicine.warnings,
+          interactions: foundMedicine.interactions,
+          storage: foundMedicine.storage
+        };
+        
+        setDrugInfo(drugInfo);
+        toast.success(`Information found for ${foundMedicine.name}`);
       } else {
-        toast.error(`No information found for "${searchQuery}". Try searching for: paracetamol, samahan, or siddhalepa balm`);
+        // Check hardcoded database as fallback
+        const hardcodedDrug = sriLankanMedicineDatabase[searchQuery];
+        if (hardcodedDrug) {
+          setDrugInfo(hardcodedDrug);
+          toast.success(`Information found for ${hardcodedDrug.name}`);
+        } else {
+          toast.error(`No information found for "${searchQuery}". Database contains ${nmraDrugDatabase.length + sriLankanMedicines.length} registered medications.`);
+        }
       }
     } catch (error) {
       toast.error('Failed to search drug information');
