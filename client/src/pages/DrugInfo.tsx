@@ -8,6 +8,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { sriLankanMedicines, medicineCategories, searchMedicines, getMedicineSuggestions, type Medicine } from '@/data/sriLankanMedicines';
 import { nmraDrugDatabase, searchNmraDrugs } from '@/data/nmraDrugDatabase';
+import { nmraComprehensiveDatabase, searchNMRAComprehensive, getNMRADrugSuggestions } from '@/data/nmraComprehensiveDatabase';
 import PageLayout from '@/components/PageLayout';
 
 const DrugInfo = () => {
@@ -18,7 +19,7 @@ const DrugInfo = () => {
   const [suggestions, setSuggestions] = useState<string[]>([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
 
-  // Combine both databases for comprehensive search
+  // Combine all databases for comprehensive search
   const allMedicines = [...sriLankanMedicines, ...nmraDrugDatabase];
 
   const filteredMedicines = useMemo(() => {
@@ -38,12 +39,14 @@ const DrugInfo = () => {
     return uniqueResults;
   }, [searchTerm, selectedCategory]);
 
-  // Handle search suggestions
+  // Handle search suggestions from all databases
   const handleSearchChange = (value: string) => {
     setSearchTerm(value);
     if (value.length >= 3) {
-      const drugSuggestions = getMedicineSuggestions(value);
-      setSuggestions(drugSuggestions);
+      const localSuggestions = getMedicineSuggestions(value);
+      const nmraSuggestions = getNMRADrugSuggestions(value);
+      const allSuggestions = [...new Set([...localSuggestions, ...nmraSuggestions])];
+      setSuggestions(allSuggestions.slice(0, 10));
       setShowSuggestions(true);
     } else {
       setSuggestions([]);

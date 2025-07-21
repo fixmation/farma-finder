@@ -137,6 +137,9 @@ The application is designed for scalability with a clear separation of concerns,
 - ✅ **DrugBank API Removal**: Removed external DrugBank API dependency, now using local NMRA database
 - ✅ **Enhanced Drug Details**: Added contraindications, interactions, dosage, storage, and pharmacology information
 - ✅ **Smart Search Features**: Implemented intelligent search with autocomplete for both drug and location searches
+- ✅ **NMRA Comprehensive Database**: Integrated authentic NMRA registered drugs from official file with 6000+ medicines
+- ✅ **Enhanced Drug Search Description**: Updated to specify "medications approved by National Medicines Regulatory Authority (NMRA)"
+- ✅ **Real NMRA Data Integration**: Parsed and integrated official Sri Lankan drug registration data including Strepsils, Zerodol, and other registered medicines
 
 ### January 18, 2025
 - ✅ **Migration Completed**: Successfully migrated from Supabase to Neon PostgreSQL
