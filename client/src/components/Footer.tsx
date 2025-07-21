@@ -15,7 +15,7 @@ const Footer: React.FC = () => {
                 <MapPin className="h-6 w-6 text-white" />
               </div>
               <div>
-                <h3 className="text-xl font-bold">FarmaFinder</h3>
+                <h3 className="text-xl font-bold">DigiFarmacy</h3>
                 <p className="text-white/70 text-sm">AI-Enhanced Health Companion</p>
               </div>
             </div>
@@ -91,7 +91,7 @@ const Footer: React.FC = () => {
         <div className="border-t border-white/20 mt-8 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <div className="text-white/70 text-sm">
-              © 2025 FarmaFinder. All rights reserved. | Compliant with Sri Lanka's PDPA
+              © 2025 DigiFarmacy. All rights reserved. | Compliant with Sri Lanka's PDPA
             </div>
             <div className="text-white/60 text-xs">
               Built with ❤️ for the people of Sri Lanka

@@ -1,8 +1,8 @@
-# FarmaFinder - AI-Enhanced Health Companion
+# DigiFarmacy - AI-Enhanced Health Companion
 
 ## Overview
 
-FarmaFinder is a comprehensive full-stack web application designed for the Sri Lankan healthcare ecosystem. It serves as an AI-enhanced health companion that connects patients with verified pharmacies and laboratories through intelligent technology. The platform offers prescription analysis, drug information, pharmacy mapping, voice assistance, and commission-based business transactions.
+DigiFarmacy is a comprehensive full-stack web application designed for the Sri Lankan healthcare ecosystem. It serves as an AI-enhanced health companion that connects patients with verified pharmacies and laboratories through intelligent technology. The platform offers prescription analysis, drug information, pharmacy mapping, voice assistance, and commission-based business transactions.
 
 ## User Preferences
 
@@ -130,6 +130,13 @@ The application is designed for scalability with a clear separation of concerns,
 - ✅ **Enhanced Prescription Upload**: Added "No Pharmacy Found" message for better UX
 - ✅ **Laboratory Booking Enhancement**: Added Mapbox integration with interactive laboratory locations
 - ✅ **Button Styling Updates**: Replaced glassmorphism effects with solid #00bfff/green gradient colors for improved visibility
+- ✅ **Branding Update**: Changed from "FarmaFinder" to "DigiFarmacy" throughout the application
+- ✅ **NMRA Drug Database**: Implemented comprehensive drug database with detailed NMRA-licensed medicines
+- ✅ **Advanced Drug Search**: Added dropdown suggestions for 3+ character searches with comprehensive drug information
+- ✅ **GPS Location Integration**: Implemented GPS location finder with Mapbox integration for city/town search
+- ✅ **DrugBank API Removal**: Removed external DrugBank API dependency, now using local NMRA database
+- ✅ **Enhanced Drug Details**: Added contraindications, interactions, dosage, storage, and pharmacology information
+- ✅ **Smart Search Features**: Implemented intelligent search with autocomplete for both drug and location searches
 
 ### January 18, 2025
 - ✅ **Migration Completed**: Successfully migrated from Supabase to Neon PostgreSQL

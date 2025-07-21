@@ -65,7 +65,7 @@ const MobileFooterPopup = () => {
               <div className="w-8 h-8 medical-gradient rounded-lg flex items-center justify-center">
                 <MapPin className="h-4 w-4 text-white" />
               </div>
-              FarmaFinder
+              DigiFarmacy
             </DialogTitle>
             <DialogDescription>
               AI-Enhanced Health Companion for Sri Lanka

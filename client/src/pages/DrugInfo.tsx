@@ -6,7 +6,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { sriLankanMedicines, medicineCategories, searchMedicines, type Medicine } from '@/data/sriLankanMedicines';
+import { sriLankanMedicines, medicineCategories, searchMedicines, getMedicineSuggestions, type Medicine } from '@/data/sriLankanMedicines';
+import { nmraDrugDatabase, searchNmraDrugs } from '@/data/nmraDrugDatabase';
 import PageLayout from '@/components/PageLayout';
 
 const DrugInfo = () => {
@@ -14,15 +15,41 @@ const DrugInfo = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [selectedMedicine, setSelectedMedicine] = useState<Medicine | null>(null);
 
+  const [suggestions, setSuggestions] = useState<string[]>([]);
+  const [showSuggestions, setShowSuggestions] = useState(false);
+
+  // Combine both databases for comprehensive search
+  const allMedicines = [...sriLankanMedicines, ...nmraDrugDatabase];
+
   const filteredMedicines = useMemo(() => {
-    let results = searchTerm ? searchMedicines(searchTerm) : sriLankanMedicines;
+    let results = searchTerm ? 
+      [...searchMedicines(searchTerm), ...searchNmraDrugs(searchTerm)] : 
+      allMedicines;
     
     if (selectedCategory !== 'all') {
       results = results.filter(med => med.category === selectedCategory);
     }
     
-    return results;
+    // Remove duplicates based on name
+    const uniqueResults = results.filter((med, index, self) => 
+      index === self.findIndex(m => m.name === med.name)
+    );
+    
+    return uniqueResults;
   }, [searchTerm, selectedCategory]);
+
+  // Handle search suggestions
+  const handleSearchChange = (value: string) => {
+    setSearchTerm(value);
+    if (value.length >= 3) {
+      const drugSuggestions = getMedicineSuggestions(value);
+      setSuggestions(drugSuggestions);
+      setShowSuggestions(true);
+    } else {
+      setSuggestions([]);
+      setShowSuggestions(false);
+    }
+  };
 
   const categories = [
     { name: 'Pain Relief', count: sriLankanMedicines.filter(m => m.category === 'Pain Relief').length, icon: Heart },
@@ -64,12 +91,32 @@ const DrugInfo = () => {
               <div className="grid md:grid-cols-2 gap-4">
                 <div className="relative">
                   <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
-                  <Input
-                    placeholder="Search medicine name (e.g., Panadol, Samahan, Glucophage)"
-                    value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)}
-                    className="pl-10 h-12 text-lg"
-                  />
+                  <div className="relative">
+                    <Input
+                      placeholder="Search medicine name (e.g., Panadol, Samahan, Glucophage)"
+                      value={searchTerm}
+                      onChange={(e) => handleSearchChange(e.target.value)}
+                      className="pl-10 h-12 text-lg"
+                      onFocus={() => suggestions.length > 0 && setShowSuggestions(true)}
+                      onBlur={() => setTimeout(() => setShowSuggestions(false), 200)}
+                    />
+                    {showSuggestions && suggestions.length > 0 && (
+                      <div className="absolute top-full left-0 right-0 z-50 mt-1 bg-white border border-gray-200 rounded-md shadow-lg max-h-60 overflow-y-auto">
+                        {suggestions.map((suggestion, index) => (
+                          <button
+                            key={index}
+                            className="w-full px-4 py-2 text-left hover:bg-gray-50 border-b border-gray-100 last:border-b-0"
+                            onClick={() => {
+                              setSearchTerm(suggestion);
+                              setShowSuggestions(false);
+                            }}
+                          >
+                            <span className="text-sm text-gray-700">{suggestion}</span>
+                          </button>
+                        ))}
+                      </div>
+                    )}
+                  </div>
                 </div>
                 <Select value={selectedCategory} onValueChange={setSelectedCategory}>
                   <SelectTrigger className="h-12">

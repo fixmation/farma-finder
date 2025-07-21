@@ -125,23 +125,7 @@ const DrugInformation: React.FC<DrugInformationProps> = ({ selectedDrug }) => {
   }, [selectedDrug]);
 
   // Function to search the drug information
-  const fetchDrugInformationFromAPI = async (drugName: string, apiKey: string) => {
-    const endpoint = `https://api.drugbank.com/v1/endpoint/${encodeURIComponent(drugName)}?region=lk`;
-    try {
-      const response = await fetch(endpoint, {
-        method: 'GET',
-        headers: {
-          'Authorization': `Bearer ${apiKey}`
-        }
-      });
-      if (!response.ok) {
-        throw new Error(`Error fetching data: ${response.statusText}`);
-      }
-      return response.json();
-    } catch (error) {
-      console.error('Failed to fetch from Drugbank API:', error);
-    }
-  };
+  // Removed external DrugBank API - now using local NMRA database
 
   const handleSearch = async (term?: string) => {
     const searchQuery = term || searchTerm.toLowerCase().trim();

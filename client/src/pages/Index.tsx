@@ -78,13 +78,13 @@ const Index = () => {
               </div>
               <div className="hidden sm:block">
                 <h1 className="text-2xl font-bold bg-gradient-to-r from-[#00bfff] to-green-600 bg-clip-text text-transparent">
-                  FarmaFinder
+                  DigiFarmacy
                 </h1>
                 <p className="text-sm text-slate-600">AI-Enhanced Health Companion</p>
               </div>
               <div className="sm:hidden">
                 <h1 className="text-lg font-bold bg-gradient-to-r from-blue-600 to-green-600 bg-clip-text text-transparent">
-                  FarmaFinder
+                  DigiFarmacy
                 </h1>
               </div>
             </div>
@@ -135,7 +135,7 @@ const Index = () => {
                     <Button 
                       onClick={() => setShowAuthModal(true)} 
                       size="sm" 
-                      className="text-sm shadow-blue-sm bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white"
+                      className="text-sm shadow-blue-sm bg-gradient-to-r from-[#00bfff] to-green-500 hover:from-[#00bfff]/80 hover:to-green-500/80 text-white"
                     >
                       <span className="hidden sm:inline">Sign In / Sign Up</span>
                       <span className="sm:hidden">Sign In</span>
@@ -191,7 +191,7 @@ const Index = () => {
 
             <Card className="bg-white/90 backdrop-blur-sm border border-gray-200 hover:scale-105 transition-all duration-300 animate-scale-in shadow-lg" style={{ animationDelay: '0.1s' }}>
               <CardHeader className="text-center p-4 md:p-6">
-                <div className="w-12 h-12 md:w-16 md:h-16 bg-gradient-to-br from-blue-600 to-green-600 rounded-2xl flex items-center justify-center mx-auto mb-2 md:mb-4 shadow-blue-sm">
+                <div className="w-12 h-12 md:w-16 md:h-16 bg-gradient-to-br from-[#00bfff] to-green-500 rounded-2xl flex items-center justify-center mx-auto mb-2 md:mb-4 shadow-blue-sm">
                   <Camera className="h-6 w-6 md:h-8 md:w-8 text-white" />
                 </div>
                 <CardTitle className="text-slate-800 text-sm md:text-base">Smart Scan</CardTitle>

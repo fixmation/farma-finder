@@ -9,10 +9,17 @@ export interface Medicine {
   uses: string[];
   sideEffects: string[];
   warnings: string[];
+  contraindications: string[];
+  interactions: string[];
+  dosage: string;
+  storage: string;
   price: string;
   availability: 'available' | 'limited' | 'out_of_stock';
   nmraRegistration: string;
   locallyManufactured: boolean;
+  activeIngredients: string[];
+  therapeuticClass: string;
+  pharmacology: string;
 }
 
 export const sriLankanMedicines: Medicine[] = [
@@ -24,13 +31,20 @@ export const sriLankanMedicines: Medicine[] = [
     manufacturer: 'State Pharmaceuticals Corporation',
     dosageForm: 'Tablet',
     strength: '500mg + 65mg',
-    uses: ['Headache', 'Fever', 'Body aches', 'Dental pain'],
-    sideEffects: ['Rare allergic reactions', 'Stomach upset with overdose'],
-    warnings: ['Do not exceed 8 tablets daily', 'Avoid with alcohol', 'Not for children under 12'],
+    uses: ['Headache', 'Fever', 'Body aches', 'Dental pain', 'Migraine'],
+    sideEffects: ['Rare allergic reactions', 'Stomach upset with overdose', 'Nausea', 'Restlessness from caffeine'],
+    warnings: ['Do not exceed 8 tablets daily', 'Avoid with alcohol', 'Not for children under 12', 'Caution in liver disease'],
+    contraindications: ['Severe liver disease', 'Known hypersensitivity to paracetamol or caffeine'],
+    interactions: ['Warfarin', 'Phenytoin', 'Carbamazepine', 'Other caffeine-containing products'],
+    dosage: 'Adults: 1-2 tablets every 4-6 hours as needed. Maximum 8 tablets in 24 hours',
+    storage: 'Store below 25°C in a dry place. Protect from light.',
     price: 'LKR 45.00 (10 tablets)',
     availability: 'available',
     nmraRegistration: 'MD 12345',
-    locallyManufactured: true
+    locallyManufactured: true,
+    activeIngredients: ['Paracetamol 500mg', 'Caffeine 65mg'],
+    therapeuticClass: 'Non-opioid analgesic with CNS stimulant',
+    pharmacology: 'Paracetamol acts centrally and peripherally to block pain impulses. Caffeine enhances analgesic effect and provides mild stimulation.'
   },
   {
     id: 'SL002',
@@ -43,10 +57,17 @@ export const sriLankanMedicines: Medicine[] = [
     uses: ['Cold and flu', 'Cough', 'Fever', 'Sore throat'],
     sideEffects: ['Generally well tolerated', 'Possible allergic reactions in sensitive individuals'],
     warnings: ['Consult doctor if pregnant', 'Not recommended for children under 2 years'],
+    contraindications: ['Known allergy to herbal ingredients'],
+    interactions: ['May interact with diabetes medications'],
+    dosage: 'Adults: 1 sachet dissolved in hot water 2-3 times daily',
+    storage: 'Store in cool, dry place below 30°C',
     price: 'LKR 150.00 (10 sachets)',
     availability: 'available',
     nmraRegistration: 'TR 67890',
-    locallyManufactured: true
+    locallyManufactured: true,
+    activeIngredients: ['Coriander', 'Ginger', 'Black pepper', 'Long pepper'],
+    therapeuticClass: 'Traditional Ayurvedic medicine',
+    pharmacology: 'Synergistic herbal action providing anti-inflammatory and immune-supporting effects'
   },
   {
     id: 'SL003',
@@ -59,10 +80,17 @@ export const sriLankanMedicines: Medicine[] = [
     uses: ['Bacterial infections', 'Respiratory tract infections', 'Urinary tract infections'],
     sideEffects: ['Nausea', 'Diarrhea', 'Skin rash', 'Allergic reactions'],
     warnings: ['Complete full course', 'Take with food', 'Inform doctor of penicillin allergy'],
+    contraindications: ['Known penicillin allergy', 'Severe renal impairment'],
+    interactions: ['Warfarin', 'Oral contraceptives', 'Allopurinol'],
+    dosage: 'Adults: 250-500mg every 8 hours. Children: 20-40mg/kg daily',
+    storage: 'Store below 25°C in a dry place',
     price: 'LKR 12.00 per capsule',
     availability: 'available',
     nmraRegistration: 'MD 23456',
-    locallyManufactured: false
+    locallyManufactured: false,
+    activeIngredients: ['Amoxicillin (as trihydrate) 250mg'],
+    therapeuticClass: 'Beta-lactam antibiotic',
+    pharmacology: 'Bactericidal antibiotic that inhibits bacterial cell wall synthesis'
   },
   {
     id: 'SL004',
@@ -75,10 +103,17 @@ export const sriLankanMedicines: Medicine[] = [
     uses: ['Type 2 diabetes', 'Insulin resistance', 'PCOS'],
     sideEffects: ['Nausea', 'Diarrhea', 'Metallic taste', 'Vitamin B12 deficiency'],
     warnings: ['Take with meals', 'Monitor kidney function', 'Stop before surgery'],
+    contraindications: ['Renal impairment', 'Metabolic acidosis', 'Severe heart failure'],
+    interactions: ['Iodinated contrast', 'Alcohol', 'Cimetidine'],
+    dosage: 'Initial: 500mg twice daily. Maximum: 2550mg daily',
+    storage: 'Store below 25°C in original container',
     price: 'LKR 8.50 per tablet',
     availability: 'available',
     nmraRegistration: 'MD 34567',
-    locallyManufactured: false
+    locallyManufactured: false,
+    activeIngredients: ['Metformin Hydrochloride 500mg'],
+    therapeuticClass: 'Biguanide antidiabetic',
+    pharmacology: 'Decreases hepatic glucose production and improves insulin sensitivity'
   },
   {
     id: 'SL005',
@@ -91,10 +126,17 @@ export const sriLankanMedicines: Medicine[] = [
     uses: ['High blood pressure', 'Angina', 'Coronary artery disease'],
     sideEffects: ['Ankle swelling', 'Dizziness', 'Flushing', 'Fatigue'],
     warnings: ['Do not stop suddenly', 'Monitor blood pressure', 'Caution in liver disease'],
+    contraindications: ['Severe aortic stenosis', 'Cardiogenic shock'],
+    interactions: ['Simvastatin', 'Cyclosporine', 'Grapefruit juice'],
+    dosage: 'Initial: 2.5-5mg daily. Maximum: 10mg daily',
+    storage: 'Store below 30°C. Protect from light',
     price: 'LKR 3.75 per tablet',
     availability: 'available',
     nmraRegistration: 'MD 45678',
-    locallyManufactured: true
+    locallyManufactured: true,
+    activeIngredients: ['Amlodipine Besylate equivalent to Amlodipine 5mg'],
+    therapeuticClass: 'Calcium channel blocker',
+    pharmacology: 'Blocks calcium influx in smooth muscle, causing vasodilation'
   },
   {
     id: 'SL006',
@@ -107,10 +149,17 @@ export const sriLankanMedicines: Medicine[] = [
     uses: ['Allergic rhinitis', 'Urticaria', 'Allergic conjunctivitis'],
     sideEffects: ['Drowsiness', 'Dry mouth', 'Headache'],
     warnings: ['May cause drowsiness', 'Avoid alcohol', 'Caution when driving'],
+    contraindications: ['Severe kidney disease', 'End-stage renal disease'],
+    interactions: ['Alcohol', 'CNS depressants', 'Theophylline'],
+    dosage: 'Adults: 10mg once daily. Children 6-12 years: 5mg once daily',
+    storage: 'Store below 25°C in dry place',
     price: 'LKR 4.25 per tablet',
     availability: 'available',
     nmraRegistration: 'MD 56789',
-    locallyManufactured: true
+    locallyManufactured: true,
+    activeIngredients: ['Cetirizine Hydrochloride 10mg'],
+    therapeuticClass: 'Second-generation antihistamine',
+    pharmacology: 'Selective H1-receptor antagonist with minimal CNS penetration'
   },
   {
     id: 'SL007',
@@ -232,14 +281,24 @@ export const manufacturers = [
 ];
 
 export function searchMedicines(query: string): Medicine[] {
+  if (!query || query.length < 3) return [];
+  
   const searchTerm = query.toLowerCase().trim();
-  if (!searchTerm) return sriLankanMedicines;
 
   return sriLankanMedicines.filter(medicine =>
     medicine.name.toLowerCase().includes(searchTerm) ||
     medicine.genericName.toLowerCase().includes(searchTerm) ||
     medicine.category.toLowerCase().includes(searchTerm) ||
     medicine.manufacturer.toLowerCase().includes(searchTerm) ||
-    medicine.uses.some(use => use.toLowerCase().includes(searchTerm))
+    medicine.uses.some(use => use.toLowerCase().includes(searchTerm)) ||
+    medicine.activeIngredients?.some(ingredient => ingredient.toLowerCase().includes(searchTerm))
   );
+}
+
+// Get medicine suggestions for dropdown
+export function getMedicineSuggestions(query: string): string[] {
+  if (!query || query.length < 3) return [];
+  
+  const results = searchMedicines(query).slice(0, 10);
+  return results.map(med => med.name);
 }
