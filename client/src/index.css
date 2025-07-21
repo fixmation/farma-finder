@@ -161,7 +161,13 @@
     font-family: "Inter", sans-serif;
   }
 
+  @media (max-width: 768px) {
   button {
-    background-color: #00bfff; /* or #008000 */
+    background-color: white; /* Original color before change */
   }
+}
+
+button {
+  background-color: #00bfff; /* or #008000 */
+}
 }
