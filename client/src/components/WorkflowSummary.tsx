@@ -47,20 +47,22 @@ const WorkflowSummary: React.FC = () => {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
+      <div className="grid grid-cols-4 gap-2 md:gap-4 mb-8">
         {workflowSteps.map((step, index) => (
-          <div key={step.id} className="flex flex-col items-center">
+          <div key={step.id} className="flex flex-col items-center relative">
             <Card className={`w-full ${step.color} border-2 hover:shadow-lg transition-shadow`}>
-              <CardContent className="p-4 text-center">
-                <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-md mx-auto mb-3">
-                  {step.icon}
+              <CardContent className="p-2 md:p-4 text-center">
+                <div className="w-8 h-8 md:w-12 md:h-12 bg-white rounded-full flex items-center justify-center shadow-md mx-auto mb-1 md:mb-3">
+                  <div className="scale-75 md:scale-100">
+                    {step.icon}
+                  </div>
                 </div>
-                <div className="flex items-center justify-center gap-2 mb-2">
-                  <span className="w-6 h-6 bg-gray-800 text-white rounded-full flex items-center justify-center text-sm font-bold">
+                <div className="flex items-center justify-center gap-1 md:gap-2 mb-1 md:mb-2">
+                  <span className="w-4 h-4 md:w-6 md:h-6 bg-gray-800 text-white rounded-full flex items-center justify-center text-xs md:text-sm font-bold">
                     {step.id}
                   </span>
                 </div>
-                <h3 className="text-sm font-semibold text-gray-900">
+                <h3 className="text-xs md:text-sm font-semibold text-gray-900 leading-tight">
                   {step.title}
                 </h3>
               </CardContent>

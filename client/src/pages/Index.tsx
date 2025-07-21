@@ -182,9 +182,6 @@ const Index = () => {
             </p>
           </div>
 
-          {/* Workflow Summary Section */}
-          <WorkflowSummary />
-
           {/* Enhanced Feature Cards */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mb-8 md:mb-12">
             <Card className="bg-white/90 backdrop-blur-sm border border-gray-200 hover:scale-105 transition-all duration-300 animate-scale-in shadow-lg">
@@ -235,6 +232,9 @@ const Index = () => {
               </CardHeader>
             </Card>
           </div>
+
+          {/* Workflow Summary Section */}
+          <WorkflowSummary />
 
           {/* Report Generator Modal */}
           {showReportGenerator && reportData && (
