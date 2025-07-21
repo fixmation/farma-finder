@@ -162,12 +162,12 @@
   }
 
   @media (max-width: 768px) {
-  button {
-    background-color: white; /* Original color before change */
+    button {
+      background-color: white; /* Original mobile view color */
+    }
   }
-}
 
-button {
-  background-color: #00bfff; /* or #008000 */
-}
+  button {
+    background-color: transparent; /* Assume transparent was the previous color */
+  }
 }
