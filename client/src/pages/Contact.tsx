@@ -42,7 +42,7 @@ const Contact: React.FC = () => {
                 <CardContent>
                   <p className="text-gray-700 mb-2">For general inquiries and support:</p>
                   <a 
-                    href="mailto:support@digifarmacy.lk" 
+                    href="mailto:support@digifarmacy.com" 
                     className="text-medical-blue hover:text-medical-blue/80 font-medium"
                   >
                     support@digifarmacy.com

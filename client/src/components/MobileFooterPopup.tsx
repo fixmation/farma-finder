@@ -32,7 +32,7 @@ const MobileFooterPopup = () => {
       title: 'Contact Info',
       icon: Phone,
       items: [
-        { label: 'support@farmafindr.lk', href: 'mailto:support@farmafindr.lk', icon: Mail },
+        { label: 'support@digifarmacy.com', href: 'mailto:support@digifarmacy.com', icon: Mail },
         { label: '+94 77 123 4567', href: 'tel:+94771234567', icon: Phone }
       ]
     }

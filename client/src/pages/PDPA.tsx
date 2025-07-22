@@ -226,9 +226,9 @@ const PDPA: React.FC = () => {
             <CardContent>
               <div className="bg-gray-50 p-4 rounded-lg space-y-2">
                 <p className="font-medium">For any data protection concerns or to exercise your rights:</p>
-                <p className="text-sm text-muted-foreground">Email: support@digifarmacy.com</p>
-                <p className="text-sm text-muted-foreground">Phone: +94 11 123 4567</p>
-                <p className="text-sm text-muted-foreground">Address: Data Protection Officer, DigiFarmacy, Colombo, Sri Lanka</p>
+                <p className="text-sm text-muted-foreground">Email: info@dpa.gov.lk</p>
+                <p className="text-sm text-muted-foreground">Phone: +94 11 269 7241, +94 11 269 7237</p>
+                <p className="text-sm text-muted-foreground">Address: Data Protection Officer, First Floor; Block 5, Data Protection Authority, BMICH, Colombo 07, Sri Lanka</p>
               </div>
 
               <div className="mt-4 p-4 bg-blue-50 rounded-lg">
