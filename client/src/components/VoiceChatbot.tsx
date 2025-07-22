@@ -43,8 +43,8 @@ const VoiceChatbot = ({ selectedDrug, onDrugQuery }: VoiceChatbotProps) => {
     const query = text.toLowerCase();
 
     // FarmaFinder specific responses
-    if (query.includes('farmafinder') || query.includes('about this app')) {
-      return 'FarmaFinder is an AI-enhanced health companion for Sri Lanka. We help you find verified pharmacies, analyze prescriptions using AI, get drug information, and manage your medications. Our platform connects patients with registered pharmacies across the country.';
+    if (query.includes('digifarmacy') || query.includes('about this app')) {
+      return ' DigiFarmacy is an AI-enhanced health companion for Sri Lanka. We help you find verified pharmacies, analyze prescriptions using AI, get drug information, and manage your medications. Our platform connects patients with registered pharmacies across the country.';
     }
 
     if (query.includes('find pharmacy') || query.includes('pharmacy near')) {
@@ -143,7 +143,7 @@ const VoiceChatbot = ({ selectedDrug, onDrugQuery }: VoiceChatbotProps) => {
           <CardTitle className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               <Bot className="h-5 w-5 text-medical-blue" />
-              FarmaFinder AI Assistant
+              DigiFarmacy AI Assistant
             </div>
             <Badge className="bg-medical-green/10 text-medical-green">
               Smart Chat
