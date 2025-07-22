@@ -136,7 +136,7 @@ export const EnhancedPrescriptionUpload: React.FC = () => {
             </Alert>
           )}
 
-          <div className="grid md:grid-cols-2 gap-6">
+          <div className="grid gap-6 md:grid-cols-1">
             {/* Pharmacy Selection */}
             <div className="space-y-4">
               <div>
