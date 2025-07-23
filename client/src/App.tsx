@@ -17,20 +17,7 @@ const ScrollToTop = () => {
 
   return null;
 };
-import Index from "./pages/Index";
-import Dashboard from "./pages/Dashboard";
-import AdminAuth from "./pages/AdminAuth";
-import LabBooking from "./pages/LabBooking";
-import PDPA from "./pages/PDPA";
-import TermsOfService from "./pages/TermsOfService";
-import HowToUse from "./pages/HowToUse";
-import Contact from "./pages/Contact";
-import NotFound from "./pages/NotFound";
-import PrescriptionScanner from "./pages/PrescriptionScanner";
-import VoiceAssistant from "./pages/VoiceAssistant";
-import DrugInfo from "./pages/DrugInfo";
-import Privacy from "./pages/Privacy";
-import Workflow from "./pages/Workflow";
+import SimpleTest from "./SimpleTest";
 
 const queryClient = new QueryClient();
 
@@ -41,27 +28,7 @@ const App = () => (
         <TooltipProvider>
         <Toaster />
         <Sonner />
-        <BrowserRouter>
-          <ScrollToTop />
-          <Routes>
-            <Route path="/" element={<Index />} />
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/admin-auth" element={<AdminAuth />} />
-            <Route path="/lab-booking" element={<LabBooking />} />
-            <Route path="/pharmacies" element={<Index />} />
-            <Route path="/prescription-scanner" element={<PrescriptionScanner />} />
-            <Route path="/voice-assistant" element={<VoiceAssistant />} />
-            <Route path="/drug-info" element={<DrugInfo />} />
-            <Route path="/drug-information" element={<DrugInfo />} />
-            <Route path="/privacy" element={<Privacy />} />
-            <Route path="/pdpa" element={<PDPA />} />
-            <Route path="/terms" element={<TermsOfService />} />
-            <Route path="/how-to-use" element={<HowToUse />} />
-            <Route path="/workflow" element={<Workflow />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </BrowserRouter>
+        <SimpleTest />
         </TooltipProvider>
       </AuthProvider>
     </LanguageProvider>
