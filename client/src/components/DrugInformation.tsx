@@ -220,7 +220,7 @@ const DrugInformation: React.FC<DrugInformationProps> = ({ selectedDrug }) => {
                   {/* Complete NMRA registered medicines */}
                   {completeNMRADatabase.slice(0, 200).map((medicine) => (
                     <SelectItem key={medicine.id} value={medicine.name.toLowerCase()}>
-                      {medicine.name} - {medicine.category} (NMRA: {medicine.registrationNumber})
+                      {medicine.name} - {medicine.category} (NMRA: {medicine.nmraRegistration})
                     </SelectItem>
                   ))}
                 </SelectContent>
@@ -279,12 +279,12 @@ const DrugInformation: React.FC<DrugInformationProps> = ({ selectedDrug }) => {
             </CardHeader>
             <CardContent>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
-                {drugInfo.uses.map((use, index) => (
+                {drugInfo.uses?.map((use, index) => (
                   <div key={index} className="flex items-center gap-2">
                     <div className="w-2 h-2 bg-medical-green rounded-full"></div>
                     <span className="text-sm">{use}</span>
                   </div>
-                ))}
+                )) || <p className="text-sm text-muted-foreground">No uses information available</p>}
               </div>
             </CardContent>
           </Card>
@@ -312,12 +312,12 @@ const DrugInformation: React.FC<DrugInformationProps> = ({ selectedDrug }) => {
             </CardHeader>
             <CardContent>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
-                {drugInfo.sideEffects.map((effect, index) => (
+                {drugInfo.sideEffects?.map((effect, index) => (
                   <div key={index} className="flex items-center gap-2">
                     <div className="w-2 h-2 bg-yellow-500 rounded-full"></div>
                     <span className="text-sm">{effect}</span>
                   </div>
-                ))}
+                )) || <p className="text-sm text-muted-foreground">No side effects information available</p>}
               </div>
             </CardContent>
           </Card>
@@ -332,12 +332,12 @@ const DrugInformation: React.FC<DrugInformationProps> = ({ selectedDrug }) => {
             </CardHeader>
             <CardContent>
               <div className="space-y-2">
-                {drugInfo.warnings.map((warning, index) => (
+                {drugInfo.warnings?.map((warning, index) => (
                   <div key={index} className="flex items-start gap-2 p-2 bg-red-50 rounded-md">
                     <AlertTriangle className="h-4 w-4 text-red-500 mt-0.5 flex-shrink-0" />
                     <span className="text-sm text-red-700">{warning}</span>
                   </div>
-                ))}
+                )) || <p className="text-sm text-muted-foreground">No warnings information available</p>}
               </div>
             </CardContent>
           </Card>
@@ -349,12 +349,12 @@ const DrugInformation: React.FC<DrugInformationProps> = ({ selectedDrug }) => {
             </CardHeader>
             <CardContent>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
-                {drugInfo.interactions.map((interaction, index) => (
+                {drugInfo.interactions?.map((interaction, index) => (
                   <div key={index} className="flex items-center gap-2">
                     <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
                     <span className="text-sm">{interaction}</span>
                   </div>
-                ))}
+                )) || <p className="text-sm text-muted-foreground">No interactions information available</p>}
               </div>
             </CardContent>
           </Card>

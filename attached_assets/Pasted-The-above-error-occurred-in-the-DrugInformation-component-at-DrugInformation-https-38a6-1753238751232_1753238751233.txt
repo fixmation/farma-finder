@@ -1,0 +1,71 @@
+The above error occurred in the <DrugInformation> component:
+
+    at DrugInformation (https://38a6c535-ea0e-4e5d-b30a-d9fe9239024e-00-2rowzakd1xc6t.picard.replit.dev/src/components/DrugInformation.tsx:29:28)
+    at div
+    at div
+    at https://38a6c535-ea0e-4e5d-b30a-d9fe9239024e-00-2rowzakd1xc6t.picard.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/chunk-PALV7G7K.js?v=588c143b:42:13
+    at Presence (https://38a6c535-ea0e-4e5d-b30a-d9fe9239024e-00-2rowzakd1xc6t.picard.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/chunk-I7UGE573.js?v=588c143b:24:11)
+    at https://38a6c535-ea0e-4e5d-b30a-d9fe9239024e-00-2rowzakd1xc6t.picard.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/@radix-ui_react-tabs.js?v=588c143b:171:13
+    at _c5 (https://38a6c535-ea0e-4e5d-b30a-d9fe9239024e-00-2rowzakd1xc6t.picard.replit.dev/src/components/ui/tabs.tsx:72:12)
+    at div
+    at https://38a6c535-ea0e-4e5d-b30a-d9fe9239024e-00-2rowzakd1xc6t.picard.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/chunk-PALV7G7K.js?v=588c143b:42:13
+    at Provider (https://38a6c535-ea0e-4e5d-b30a-d9fe9239024e-00-2rowzakd1xc6t.picard.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/chunk-K7TZL7XT.js?v=588c143b:48:15)
+    at https://38a6c535-ea0e-4e5d-b30a-d9fe9239024e-00-2rowzakd1xc6t.picard.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/@radix-ui_react-tabs.js?v=588c143b:49:7
+    at div
+    at _c9 (https://38a6c535-ea0e-4e5d-b30a-d9fe9239024e-00-2rowzakd1xc6t.picard.replit.dev/src/components/ui/card.tsx:114:12)
+    at div
+    at _c (https://38a6c535-ea0e-4e5d-b30a-d9fe9239024e-00-2rowzakd1xc6t.picard.replit.dev/src/components/ui/card.tsx:20:11)
+    at div
+    at main
+    at div
+    at Index (https://38a6c535-ea0e-4e5d-b30a-d9fe9239024e-00-2rowzakd1xc6t.picard.replit.dev/src/pages/Index.tsx:43:38)
+    at RenderedRoute (https://38a6c535-ea0e-4e5d-b30a-d9fe9239024e-00-2rowzakd1xc6t.picard.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/react-router-dom.js?v=588c143b:5524:26)
+    at Routes (https://38a6c535-ea0e-4e5d-b30a-d9fe9239024e-00-2rowzakd1xc6t.picard.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/react-router-dom.js?v=588c143b:6257:3)
+    at Router (https://38a6c535-ea0e-4e5d-b30a-d9fe9239024e-00-2rowzakd1xc6t.picard.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/react-router-dom.js?v=588c143b:6200:13)
+    at BrowserRouter (https://38a6c535-ea0e-4e5d-b30a-d9fe9239024e-00-2rowzakd1xc6t.picard.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/react-router-dom.js?v=588c143b:9270:3)
+    at Provider (https://38a6c535-ea0e-4e5d-b30a-d9fe9239024e-00-2rowzakd1xc6t.picard.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/chunk-K7TZL7XT.js?v=588c143b:48:15)
+    at TooltipProvider (https://38a6c535-ea0e-4e5d-b30a-d9fe9239024e-00-2rowzakd1xc6t.picard.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/@radix-ui_react-tooltip.js?v=588c143b:59:5)
+    at AuthProvider (https://38a6c535-ea0e-4e5d-b30a-d9fe9239024e-00-2rowzakd1xc6t.picard.replit.dev/src/components/auth/AuthProvider.tsx:30:32)
+    at LanguageProvider (https://38a6c535-ea0e-4e5d-b30a-d9fe9239024e-00-2rowzakd1xc6t.picard.replit.dev/src/contexts/LanguageContext.tsx:130:36)
+    at QueryClientProvider (https://38a6c535-ea0e-4e5d-b30a-d9fe9239024e-00-2rowzakd1xc6t.picard.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/@tanstack_react-query.js?v=588c143b:2805:3)
+    at App
+
+Consider adding an error boundary to your tree to customize error handling behavior.
+Visit https://reactjs.org/link/error-boundaries to learn more about error boundaries.
+
+at DrugInformation (https://38a6c535-ea0e-4e5d-b30a-d9fe9239024e-00-2rowzakd1xc6t.picard.replit.dev/src/components/DrugInformation.tsx:29:28)
+at div
+at div
+at https://38a6c535-ea0e-4e5d-b30a-d9fe9239024e-00-2rowzakd1xc6t.picard.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/chunk-PALV7G7K.js?v=588c143b:42:13
+at Presence (https://38a6c535-ea0e-4e5d-b30a-d9fe9239024e-00-2rowzakd1xc6t.picard.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/chunk-I7UGE573.js?v=588c143b:24:11)
+at https://38a6c535-ea0e-4e5d-b30a-d9fe9239024e-00-2rowzakd1xc6t.picard.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/@radix-ui_react-tabs.js?v=588c143b:171:13
+at _c5 (https://38a6c535-ea0e-4e5d-b30a-d9fe9239024e-00-2rowzakd1xc6t.picard.replit.dev/src/components/ui/tabs.tsx:72:12)
+at div
+at https://38a6c535-ea0e-4e5d-b30a-d9fe9239024e-00-2rowzakd1xc6t.picard.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/chunk-PALV7G7K.js?v=588c143b:42:13
+at Provider (https://38a6c535-ea0e-4e5d-b30a-d9fe9239024e-00-2rowzakd1xc6t.picard.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/chunk-K7TZL7XT.js?v=588c143b:48:15)
+at https://38a6c535-ea0e-4e5d-b30a-d9fe9239024e-00-2rowzakd1xc6t.picard.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/@radix-ui_react-tabs.js?v=588c143b:49:7
+at div
+at _c9 (https://38a6c535-ea0e-4e5d-b30a-d9fe9239024e-00-2rowzakd1xc6t.picard.replit.dev/src/components/ui/card.tsx:114:12)
+at div
+at _c (https://38a6c535-ea0e-4e5d-b30a-d9fe9239024e-00-2rowzakd1xc6t.picard.replit.dev/src/components/ui/card.tsx:20:11)
+at div
+at main
+at div
+at Index (https://38a6c535-ea0e-4e5d-b30a-d9fe9239024e-00-2rowzakd1xc6t.picard.replit.dev/src/pages/Index.tsx:43:38)
+at RenderedRoute (https://38a6c535-ea0e-4e5d-b30a-d9fe9239024e-00-2rowzakd1xc6t.picard.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/react-router-dom.js?v=588c143b:5524:26)
+at Routes (https://38a6c535-ea0e-4e5d-b30a-d9fe9239024e-00-2rowzakd1xc6t.picard.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/react-router-dom.js?v=588c143b:6257:3)
+at Router (https://38a6c535-ea0e-4e5d-b30a-d9fe9239024e-00-2rowzakd1xc6t.picard.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/react-router-dom.js?v=588c143b:6200:13)
+at BrowserRouter (https://38a6c535-ea0e-4e5d-b30a-d9fe9239024e-00-2rowzakd1xc6t.picard.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/react-router-dom.js?v=588c143b:9270:3)
+at Provider (https://38a6c535-ea0e-4e5d-b30a-d9fe9239024e-00-2rowzakd1xc6t.picard.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/chunk-K7TZL7XT.js?v=588c143b:48:15)
+at TooltipProvider (https://38a6c535-ea0e-4e5d-b30a-d9fe9239024e-00-2rowzakd1xc6t.picard.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/@radix-ui_react-tooltip.js?v=588c143b:59:5)
+at AuthProvider (https://38a6c535-ea0e-4e5d-b30a-d9fe9239024e-00-2rowzakd1xc6t.picard.replit.dev/src/components/auth/AuthProvider.tsx:30:32)
+at LanguageProvider (https://38a6c535-ea0e-4e5d-b30a-d9fe9239024e-00-2rowzakd1xc6t.picard.replit.dev/src/contexts/LanguageContext.tsx:130:36)
+at QueryClientProvider (https://38a6c535-ea0e-4e5d-b30a-d9fe9239024e-00-2rowzakd1xc6t.picard.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/@tanstack_react-query.js?v=588c143b:2805:3)
+at App
+
+Consider adding an error boundary to your tree to customize error handling behavior.
+Visit https://reactjs.org/link/error-boundaries to learn more about error boundaries.
+at t.value (https://38a6c535-ea0e-4e5d-b30a-d9fe9239024e-00-2rowzakd1xc6t.picard.replit.dev/__replco/static/devtools/eruda/3.2.3/eruda.js:2:17465)
+at new t (https://38a6c535-ea0e-4e5d-b30a-d9fe9239024e-00-2rowzakd1xc6t.picard.replit.dev/__replco/static/devtools/eruda/3.2.3/eruda.js:2:12630)
+at t.value (https://38a6c535-ea0e-4e5d-b30a-d9fe9239024e-00-2rowzakd1xc6t.picard.replit.dev/__replco/static/devtools/eruda/3.2.3/eruda.js:2:32766)
+at https://38a6c535-ea0e-4e5d-b30a-d9fe9239024e-00-2rowzakd1xc6t.picard.replit.dev/__replco/static/devtools/eruda/3.2.3/eruda.js:2:34400
