@@ -12,17 +12,10 @@ const ScrollToTop = () => {
   const { pathname } = useLocation();
 
   useEffect(() => {
-    document.documentElement.style.scrollBehavior = 'smooth';
-    return () => {
-      document.documentElement.style.scrollBehavior = 'auto';
-    };
-  }, []);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [pathname]);
 
-  return (
-    <>
-    {window.scrollTo({ top: 0, behavior: 'smooth' })}
-    </>
-  );
+  return null;
 };
 import Index from "./pages/Index";
 import Dashboard from "./pages/Dashboard";
